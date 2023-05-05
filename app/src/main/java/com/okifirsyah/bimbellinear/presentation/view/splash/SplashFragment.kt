@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.base.BaseFragment
+import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import com.okifirsyah.bimbellinear.databinding.FragmentSplashBinding
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
@@ -22,11 +22,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     override fun initProcess() {
-//        TODO("Not yet implemented")
     }
 
     override fun initObservers() {
-//        TODO("Not yet implemented")
     }
 
 }

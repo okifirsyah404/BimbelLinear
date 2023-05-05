@@ -23,7 +23,7 @@ class BaseApp: Application() {
             androidContext(this@BaseApp)
             modules(listOf(
 //                list of modules
-            ))
+            ),)
 
         }
     }

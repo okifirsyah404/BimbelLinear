@@ -10,4 +10,5 @@ data class UserModel(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = false)
     val id: Int?,
+
 )

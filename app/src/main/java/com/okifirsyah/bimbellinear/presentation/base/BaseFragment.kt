@@ -1,4 +1,4 @@
-package com.okifirsyah.bimbellinear.base
+package com.okifirsyah.bimbellinear.presentation.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,26 +7,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.okifirsyah.bimbellinear.R
+import com.okifirsyah.bimbellinear.databinding.FragmentSignInBinding
+import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 
-class SignInFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SignInFragment()
-    }
-
-    private lateinit var viewModel: SignInViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+class SignInFragment : BaseFragment<FragmentSignInBinding>() {
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+    ): FragmentSignInBinding {
+        return FragmentSignInBinding.inflate(inflater, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initUI() {
+        TODO("Not yet implemented")
     }
+
+    override fun initProcess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initObservers() {
+        TODO("Not yet implemented")
+    }
+
 
 }
