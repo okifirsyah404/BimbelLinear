@@ -1,4 +1,4 @@
-package com.okifirsyah.bimbellinear.presentation.view.sign_in
+package com.okifirsyah.bimbellinear.presentation.view.bill
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,16 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.databinding.FragmentSignInBinding
+import com.okifirsyah.bimbellinear.databinding.FragmentBillListBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 
-class SignInFragment : BaseFragment<FragmentSignInBinding>() {
+class BillListFragment : BaseFragment<FragmentBillListBinding>() {
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentSignInBinding {
-        return FragmentSignInBinding.inflate(inflater, container, false)
+    ): FragmentBillListBinding {
+        return FragmentBillListBinding.inflate(inflater, container, false)
     }
 
     override fun initUI() {

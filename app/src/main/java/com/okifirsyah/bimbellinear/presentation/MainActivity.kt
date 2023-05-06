@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        supportActionBar?.hide()
+
 //        viewModel.getThemeSettings().observe(this
 //        ) { isDarkModeActive: Boolean ->
 //            if (isDarkModeActive) {

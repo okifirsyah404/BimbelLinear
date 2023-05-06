@@ -2,13 +2,13 @@
     <!-- Base application theme. -->
     <style name="Theme.BimbelLinear" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/neutral_20</item>
+        <item name="colorPrimaryVariant">@color/neutral_10</item>
+        <item name="colorOnPrimary">@color/neutral_10</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/neutral_30</item>
+        <item name="colorSecondaryVariant">@color/neutral_40</item>
+        <item name="colorOnSecondary">@color/neutral_20</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

@@ -1,4 +1,4 @@
-package com.okifirsyah.bimbellinear.presentation.view.sign_in
+package com.okifirsyah.bimbellinear.presentation.view.group_info
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,26 +7,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.databinding.FragmentSignInBinding
+import com.okifirsyah.bimbellinear.databinding.FragmentGroupInfoBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 
-class SignInFragment : BaseFragment<FragmentSignInBinding>() {
+class GroupInfoFragment : BaseFragment<FragmentGroupInfoBinding>() {
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): FragmentSignInBinding {
-        return FragmentSignInBinding.inflate(inflater, container, false)
+    ): FragmentGroupInfoBinding {
+        return FragmentGroupInfoBinding.inflate(inflater, container, false)
     }
 
     override fun initUI() {
+        TODO("Not yet implemented")
     }
 
     override fun initProcess() {
+        TODO("Not yet implemented")
     }
 
     override fun initObservers() {
+        TODO("Not yet implemented")
     }
-
 
 }

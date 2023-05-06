@@ -1,4 +1,4 @@
-package com.okifirsyah.bimbellinear.presentation.view.setting
+package com.okifirsyah.bimbellinear.presentation.view.profile.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.booleanPreferencesKey
