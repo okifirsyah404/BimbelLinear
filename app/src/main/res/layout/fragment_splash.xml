@@ -6,5 +6,4 @@
     tools:context=".presentation.view.splash.SplashFragment">
 
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

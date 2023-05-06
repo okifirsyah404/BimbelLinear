@@ -19,7 +19,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     }
 
     override fun initUI() {
-        binding.toolbar.mainToolbar.title = "Splash"
 
 
     }

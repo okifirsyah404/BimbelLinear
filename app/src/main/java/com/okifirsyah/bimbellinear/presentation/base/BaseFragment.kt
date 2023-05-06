@@ -53,4 +53,7 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
 
     protected open fun initActions() {}
 
+    protected open fun onBackPressed() {
+    }
+
 }
