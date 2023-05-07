@@ -6,27 +6,38 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.okifirsyah.bimbellinear.R
+import com.okifirsyah.bimbellinear.constant.PageTitleConstant
+import com.okifirsyah.bimbellinear.databinding.FragmentProfileBinding
+import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 
-class ProfileFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ProfileFragment()
-    }
-
-    private lateinit var viewModel: ProfileViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    ): FragmentProfileBinding {
+        return FragmentProfileBinding.inflate(inflater, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun initAppBar() {
+        binding.toolbar.mainToolbar.title = PageTitleConstant.PROFILE
+        binding.toolbar.mainToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+
+    override fun initUI() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initProcess() {
+        TODO("Not yet implemented")
+    }
+
+    override fun initObservers() {
+        TODO("Not yet implemented")
     }
 
 }

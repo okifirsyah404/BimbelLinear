@@ -21,7 +21,11 @@
         android:id="@+id/onBoardingFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.on_boarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
-        tools:layout="@layout/fragment_on_boarding" />
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.sign_in.SignInFragment"

@@ -3,6 +3,8 @@ package com.okifirsyah.bimbellinear
 import android.app.Application
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
+import com.okifirsyah.bimbellinear.di.sharedPreferencesModule
+import com.okifirsyah.bimbellinear.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -21,9 +23,13 @@ class BaseApp: Application() {
         startKoin {
             androidLogger(Level.NONE)
             androidContext(this@BaseApp)
-            modules(listOf(
+            modules(
+                listOf(
+                    viewModelModule,
+                    sharedPreferencesModule
 //                list of modules
-            ),)
+                ),
+            )
 
         }
     }

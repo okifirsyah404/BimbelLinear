@@ -26,6 +26,7 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
 
         initIntent()
         initUI()
+        initAppBar()
         initActions()
         initProcess()
         initObservers()
@@ -53,7 +54,6 @@ abstract class BaseFragment<VB: ViewBinding> : Fragment() {
 
     protected open fun initActions() {}
 
-    protected open fun onBackPressed() {
-    }
+    protected open fun initAppBar() {}
 
 }

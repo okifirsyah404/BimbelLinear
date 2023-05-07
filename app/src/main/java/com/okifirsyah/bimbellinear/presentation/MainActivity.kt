@@ -3,10 +3,11 @@ package com.okifirsyah.bimbellinear.presentation
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.okifirsyah.bimbellinear.R
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
-//    private val viewModel: MainViewModel by inject()
+    private val viewModel: MainViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
