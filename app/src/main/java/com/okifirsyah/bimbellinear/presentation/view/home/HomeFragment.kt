@@ -1,14 +1,12 @@
 package com.okifirsyah.bimbellinear.presentation.view.home
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.databinding.FragmentHomeBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
+import com.okifirsyah.bimbellinear.utils.extensions.getGreetings
+import java.util.Calendar
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun getViewBinding(
@@ -20,12 +18,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initUI() {
+        binding.homeToolbar.tvGreetings.text = Calendar.getInstance().getGreetings()
     }
 
     override fun initProcess() {
     }
 
     override fun initObservers() {
+    }
+
+    override fun initIntent() {
+        binding.homeToolbar.btnProfile.setOnClickListener {
+        }
     }
 
 

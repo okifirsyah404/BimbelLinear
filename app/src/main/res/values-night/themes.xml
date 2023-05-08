@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.BimbelLinear" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -13,5 +13,9 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="toolbarColor">@color/neutral_10</item>
+        <item name="lineDividerColor">@color/neutral_40</item>
+        <item name="iconColor">@color/neutral_10</item>
+        <item name="cardColor">@color/neutral_30</item>
+        <item name="flatTextButtonColor">@color/primary_20</item>
     </style>
 </resources>

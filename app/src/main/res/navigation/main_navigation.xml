@@ -9,28 +9,31 @@
         android:id="@+id/splashFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.splash.SplashFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" >
+        tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_onBoardingFragment"
             app:destination="@id/onBoardingFragment" />
         <action
             android:id="@+id/action_splashFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.on_boarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
-        tools:layout="@layout/fragment_on_boarding" >
+        tools:layout="@layout/fragment_on_boarding">
         <action
-            android:id="@+id/action_onBoardingFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_onBoardingFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.sign_in.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
+        tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -39,7 +42,7 @@
         android:id="@+id/homeFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -51,7 +54,7 @@
         android:id="@+id/profileFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_moduleBookFragment"
             app:destination="@id/moduleBookFragment" />
@@ -77,7 +80,7 @@
         android:id="@+id/attendanceHistoryFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.attendance_history.AttendanceHistoryFragment"
         android:label="fragment_attendance_history"
-        tools:layout="@layout/fragment_attendance_history" >
+        tools:layout="@layout/fragment_attendance_history">
         <action
             android:id="@+id/action_attendanceHistoryFragment_to_attendanceDetailFragment"
             app:destination="@id/attendanceDetailFragment" />
@@ -91,7 +94,7 @@
         android:id="@+id/billListFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.bill.BillListFragment"
         android:label="fragment_bill_list"
-        tools:layout="@layout/fragment_bill_list" >
+        tools:layout="@layout/fragment_bill_list">
         <action
             android:id="@+id/action_billListFragment_to_billDetailFragment"
             app:destination="@id/billDetailFragment" />
@@ -110,7 +113,7 @@
         android:id="@+id/otpFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.otp.OtpFragment"
         android:label="fragment_otp"
-        tools:layout="@layout/fragment_otp" >
+        tools:layout="@layout/fragment_otp">
         <action
             android:id="@+id/action_otpFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />

@@ -2,6 +2,7 @@ package com.okifirsyah.bimbellinear.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.okifirsyah.bimbellinear.R
 import org.koin.android.ext.android.inject
 
@@ -15,10 +16,11 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+
 //        viewModel.getThemeSettings().observe(this
 //        ) { isDarkModeActive: Boolean ->
 //            if (isDarkModeActive) {
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 //            } else {
 //                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 //            }
