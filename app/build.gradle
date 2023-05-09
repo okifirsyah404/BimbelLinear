@@ -14,7 +14,7 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
 
         buildConfigField("String", "BASE_URL", '"https://google.com/"')
         buildConfigField("String", "DB_NAME", '"bimbel-linear-db"')

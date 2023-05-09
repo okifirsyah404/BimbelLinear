@@ -1,11 +1,9 @@
 package com.okifirsyah.bimbellinear.presentation.view.profile
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.constant.PageTitleConstant
@@ -23,21 +21,20 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun initAppBar() {
         binding.toolbar.mainToolbar.title = PageTitleConstant.PROFILE
+        binding.toolbar.mainToolbar.navigationIcon =
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_close)
         binding.toolbar.mainToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
     }
 
     override fun initUI() {
-        TODO("Not yet implemented")
     }
 
     override fun initProcess() {
-        TODO("Not yet implemented")
     }
 
     override fun initObservers() {
-        TODO("Not yet implemented")
     }
 
 }

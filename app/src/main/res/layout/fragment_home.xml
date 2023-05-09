@@ -4,26 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/viewBackgroundColor"
     android:orientation="vertical"
     tools:context=".presentation.view.home.HomeFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/home_toolbar"
             layout="@layout/toolbar_home"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_schedule_subtitle"
             style="@style/LabelSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="16dp"
             android:text="Jadwal Bimbel"
             app:layout_constraintTop_toBottomOf="@+id/home_toolbar" />
@@ -43,8 +46,17 @@
             layout="@layout/layout_loading"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
             app:layout_constraintBaseline_toBottomOf="parent"
 
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <include
+            android:id="@+id/l_notify_password"
+            layout="@layout/layout_notify_change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 

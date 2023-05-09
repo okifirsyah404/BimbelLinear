@@ -45,7 +45,10 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_up"
+            app:popEnterAnim="@anim/slide_down"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_homeFragment_to_attendanceDetailFragment"
             app:destination="@id/attendanceDetailFragment" />

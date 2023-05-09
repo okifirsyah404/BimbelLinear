@@ -6,25 +6,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.databinding.DialogSingleButtonBinding
+import com.okifirsyah.bimbellinear.databinding.DialogConfirmationBinding
 
-class SingleButtonDialog(
+class ConfirmationDialog(
     private val dialogTitle: String,
     private val dialogMessage: String? = null,
-    private val dialogType: String = SUCCESS_DIALOG,
+    private val animationType: String = SingleButtonDialog.SUCCESS_DIALOG,
     private val isNeedAnimation: Boolean = false,
-    private val buttonText: String = "Ok",
-    private val onSubmit: (() -> Unit?)? = null
+    private val onClickRight: (() -> Unit?)? = null,
+    private val rightButtonText: String = "Ok",
+    private val onClickLeft: (() -> Unit?)? = null,
+    private val leftButtonText: String = "Cancel",
 ) : DialogFragment() {
-
-    private var _binding: DialogSingleButtonBinding? = null
+    private var _binding: DialogConfirmationBinding? = null
     val binding get() = _binding!!
 
     companion object {
-        const val TAG = "SingleButtonDialog"
-        const val FAILED_DIALOG = "FailedDialog"
-        const val SUCCESS_DIALOG = "SuccessDialog"
-        const val DIALOG_NO_ANIMATION = "NoAnimation"
+        const val TAG = "ConfirmationDialog"
+        const val FAILED_ANIMATION = "FailedDialog"
+        const val SUCCESS_ANIMATION = "SuccessDialog"
+        const val NO_ANIMATION = "NoAnimation"
     }
 
     override fun onCreateView(
@@ -32,7 +33,7 @@ class SingleButtonDialog(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DialogSingleButtonBinding.inflate(inflater, container, false)
+        _binding = DialogConfirmationBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 
@@ -44,10 +45,18 @@ class SingleButtonDialog(
         }
 
 
-        binding.btnConfirmDialog.apply {
-            text = buttonText
+        binding.btnRightDialog.apply {
+            text = rightButtonText
             setOnClickListener {
-                onSubmit?.invoke()
+                onClickRight?.invoke()
+                dismiss()
+            }
+        }
+
+        binding.btnLeftDialog.apply {
+            text = leftButtonText
+            setOnClickListener {
+                onClickLeft?.invoke()
                 dismiss()
             }
         }
@@ -63,12 +72,12 @@ class SingleButtonDialog(
     }
 
     private fun changeLottieAnimation() {
-        if (dialogType == FAILED_DIALOG) {
+        if (animationType == FAILED_ANIMATION) {
             binding.lottieAnimationViewSuccess.visibility = View.GONE
             binding.lottieAnimationViewFailed.visibility = View.VISIBLE
 
-            binding.btnConfirmDialog.setBackgroundColor(resources.getColor(R.color.error_50))
-        } else if (dialogType == SUCCESS_DIALOG) {
+            binding.btnRightDialog.setBackgroundColor(resources.getColor(R.color.error_50))
+        } else if (animationType == SUCCESS_ANIMATION) {
             binding.lottieAnimationViewFailed.visibility = View.GONE
             binding.lottieAnimationViewSuccess.visibility = View.VISIBLE
         } else {

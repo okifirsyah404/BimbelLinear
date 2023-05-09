@@ -1,39 +1,45 @@
 package com.okifirsyah.bimbellinear.utils.extensions
 
 import androidx.fragment.app.Fragment
+import com.okifirsyah.bimbellinear.presentation.dialog.ConfirmationDialog
 import com.okifirsyah.bimbellinear.presentation.dialog.SingleButtonDialog
 
-fun Fragment.showSuccessSingleButtonDialogWithAnimation(title: String, message: String? = null) {
+fun Fragment.showCustomDialog(
+    title: String,
+    message: String? = null,
+    onSubmit: (() -> Unit?)? = null,
+    submitText: String = "Ok",
+    dialogType: String = SingleButtonDialog.DIALOG_NO_ANIMATION,
+    isNeedAnimation: Boolean = false,
+) {
     SingleButtonDialog(
         title,
-        animationType = SingleButtonDialog.SUCCESS_DIALOG,
+        dialogType = dialogType,
         dialogMessage = message,
-        isNeedAnimation = true
+        isNeedAnimation = isNeedAnimation,
+        onSubmit = onSubmit,
+        buttonText = submitText
     ).show(childFragmentManager, SingleButtonDialog.TAG)
 }
 
-fun Fragment.showErrorSingleButtonDialogWithAnimation(title: String, message: String? = null) {
-    SingleButtonDialog(
+fun Fragment.showCustomConfirmationDialog(
+    title: String,
+    message: String? = null,
+    onSubmit: (() -> Unit?)? = null,
+    submitText: String = "Ok",
+    onCancel: (() -> Unit?)? = null,
+    cancelText: String = "Ok",
+    dialogType: String = ConfirmationDialog.NO_ANIMATION,
+    isNeedAnimation: Boolean = false,
+) {
+    ConfirmationDialog(
         title,
-        animationType = SingleButtonDialog.FAILED_DIALOG,
+        animationType = dialogType,
         dialogMessage = message,
-        isNeedAnimation = true
-    ).show(childFragmentManager, SingleButtonDialog.TAG)
+        isNeedAnimation = isNeedAnimation,
+        onClickRight = onSubmit,
+        rightButtonText = submitText,
+        leftButtonText = cancelText,
+        onClickLeft = onCancel
+    ).show(childFragmentManager, ConfirmationDialog.TAG)
 }
-
-fun Fragment.showSuccessSingleButtonDialog(title: String, message: String? = null) {
-    SingleButtonDialog(
-        title,
-        dialogMessage = message,
-        isNeedAnimation = false
-    ).show(childFragmentManager, SingleButtonDialog.TAG)
-}
-
-fun Fragment.showErrorSingleButtonDialog(title: String, message: String? = null) {
-    SingleButtonDialog(
-        title,
-        dialogMessage = message,
-        isNeedAnimation = false
-    ).show(childFragmentManager, SingleButtonDialog.TAG)
-}
-

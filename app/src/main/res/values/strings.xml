@@ -2,4 +2,6 @@
     <string name="app_name">BimbelLinear</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="place_holder_paragraph">Lorem ipsum dolor sit amet consectetur. Erat justo lobortis gravida phasellus. Pharetra senectus tortor morbi massa neque magna nunc nibh quis.</string>
+    <string name="place_holder_person_name">John Doe</string>
 </resources>

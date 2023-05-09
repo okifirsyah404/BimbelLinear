@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.BimbelLinear" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/neutral_20</item>
-        <item name="colorPrimaryVariant">@color/neutral_10</item>
+        <item name="colorPrimary">@color/neutral_10</item>
+        <item name="colorPrimaryVariant">@color/neutral_0</item>
         <item name="colorOnPrimary">@color/neutral_10</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/neutral_30</item>
@@ -12,10 +12,15 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="viewBackgroundColor">@color/neutral_20</item>
+        <item name="splashForegroundColor">@color/primary_40</item>
+        <item name="splashBackgroundColor">@color/neutral_10</item>
         <item name="toolbarColor">@color/neutral_10</item>
         <item name="lineDividerColor">@color/neutral_40</item>
+        <item name="viewDividerColor">@color/neutral_30</item>
         <item name="iconColor">@color/neutral_10</item>
         <item name="cardColor">@color/neutral_30</item>
         <item name="flatTextButtonColor">@color/primary_20</item>
+        <item name="outlinedButtonStrokeColor">@color/neutral_100</item>
     </style>
 </resources>

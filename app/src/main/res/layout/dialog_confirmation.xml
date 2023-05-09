@@ -48,14 +48,35 @@
             android:text="Message"
             android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/btn_confirm_dialog"
-            style="@style/FilledButtonTheme"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginBottom="8dp"
-            tools:text="Ok" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_left_dialog"
+                style="@style/OutlinedButtonTheme"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                tools:text="Left" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btn_right_dialog"
+                style="@style/FilledButtonTheme"
+                android:layout_width="135dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                tools:text="Right" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

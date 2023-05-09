@@ -12,11 +12,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="viewBackgroundColor">@color/neutral_100</item>
+        <item name="splashForegroundColor">@color/neutral_100</item>
+        <item name="splashBackgroundColor">@color/primary_40</item>
         <item name="toolbarColor">@color/primary_40</item>
         <item name="lineDividerColor">@color/neutral_70</item>
+        <item name="viewDividerColor">@color/neutral_95</item>
         <item name="iconColor">@color/neutral_100</item>
         <item name="cardColor">@color/neutral_100</item>
         <item name="flatTextButtonColor">@color/neutral_100</item>
+        <item name="outlinedButtonStrokeColor">?attr/colorPrimary</item>
 
     </style>
 
