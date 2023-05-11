@@ -1,12 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".presentation.view.group_info.GroupInfoFragment">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/txtkelompok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/neutral_0"
+                android:textSize="18sp"
+                android:fontFamily="@font/mulish_bold"
+                tools:text="Kelompok Kelas"/>
+
+            <TextView
+                android:id="@+id/kelompok"
+                android:layout_width="151dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/neutral_20"
+                android:textSize="16sp"
+                android:fontFamily="@font/mulish_regular"
+                tools:text="6A" />
+
+            <TextView
+                android:id="@+id/txttipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/neutral_0"
+                android:textSize="18sp"
+                android:fontFamily="@font/mulish_bold"
+                tools:text="Tipe Kelas"/>
+
+            <TextView
+                android:id="@+id/tipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/neutral_20"
+                android:textSize="16sp"
+                android:fontFamily="@font/mulish_regular"
+                tools:text="Reguler"/>
+
+            <TextView
+                android:id="@+id/txtjumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/neutral_0"
+                android:textSize="18sp"
+                android:fontFamily="@font/mulish_bold"
+                tools:text="Jumlah Anggota"/>
+
+            <TextView
+                android:id="@+id/jumlah"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/neutral_20"
+                android:textSize="16sp"
+                android:fontFamily="@font/mulish_regular"
+                tools:text="12"/>
+
+            <TextView
+                android:id="@+id/txtanggota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/neutral_0"
+                android:textSize="18sp"
+                android:fontFamily="@font/mulish_bold"
+                tools:text="Anggota Kelompok"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/rv_group"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtanggota"
+                tools:listitem="@layout/item_grup_info"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/white"
+        android:elevation="2dp"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btngabung"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="Gabung Grub Whatsap"
+            style="@style/FilledButtonTheme"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

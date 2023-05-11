@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.view.on_boarding.screens.ScreenBoardingFragment1">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="530dp"
+        android:id="@+id/onboarding1">
+
+        <ImageView
+            android:id="@+id/image1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/splash_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:id="@+id/gradasi1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ractangle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/judul1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/onboarding_title1"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/mulish_extra_bold"
+            android:textColor="@color/neutral_0"/>
+
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/desk1"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:textColor="@color/neutral_0"
+            android:text="@string/description"
+            android:fontFamily="@font/mulish_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnskip1"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            style="@style/OutlinedButtonTheme"
+            android:text="Skip"
+            android:fontFamily="@font/mulish_bold"
+            android:textAllCaps="false"
+            android:textColor="@color/neutral_0"/>
+        <Button
+            android:id="@+id/btnnext1"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:backgroundTint="@color/primary_40"
+            style="@style/FilledButtonTheme"
+            android:text="Next"
+            android:fontFamily="@font/mulish_bold"
+            android:textAllCaps="false"/>
+    </RelativeLayout>
+
+</LinearLayout>

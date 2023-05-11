@@ -48,6 +48,7 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+
     <style name="FilledButtonTheme.Disable" parent="Widget.Material3.Button.UnelevatedButton">
         <item name="android:fontFamily">@font/mulish_bold</item>
         <item name="android:textSize">16sp</item>

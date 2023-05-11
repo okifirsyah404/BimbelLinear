@@ -1,7 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BimbelLinear</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="place_holder_paragraph">Lorem ipsum dolor sit amet consectetur. Erat justo lobortis gravida phasellus. Pharetra senectus tortor morbi massa neque magna nunc nibh quis.</string>
     <string name="place_holder_person_name">John Doe</string>
+    <string name="cek_inbox">Cek inbox atau spam dari email kamu. Kami baru saja mengirimkan 6 digit kode verifikasi ke email</string>
+    <string name="onboarding_title1">Sistem Belajar</string>
+    <string name="onboarding_title2">Persiapan Ujian</string>
+    <string name="onboarding_title3">Kelulusan</string>
+    <string name="description">Lorem ipsum dolor sit amet consectetur. Dictum sollicitudin sollicitudin amet ac. Vestibulum quis aliquam fringilla dolor adipiscing. Quisque mi elementum felis senectus in justo libero netus etiam. Pellentesque eu nulla adipiscing massa nunc.</string>
 </resources>
