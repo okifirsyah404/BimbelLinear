@@ -35,7 +35,7 @@
             android:id="@+id/judul2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="490dp"
             android:layout_marginLeft="15dp"
             android:text="@string/onboarding_title2"
             android:textSize="26sp"
