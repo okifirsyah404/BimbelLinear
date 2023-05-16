@@ -7,8 +7,13 @@ fun Int.toRupiah(): String {
     val formatCurrency = NumberFormat.getCurrencyInstance(Locale("id", "ID"))
     val formattedCurrency = formatCurrency.format(this).substring(2)
 
-    val result = formattedCurrency.substring(0, formattedCurrency.indexOf(','))
-    if (result.contains("R")) return "Rp ${result.replace(Regex("R"), "-")}"
+    val commaIndex = formattedCurrency.indexOf(',')
+    val rIndex = formattedCurrency.indexOf('R')
+    val result = when {
+        commaIndex >= 0 -> formattedCurrency.substring(0, commaIndex)
+        rIndex >= 0 -> formattedCurrency.substring(0, rIndex).replace("R", "-")
+        else -> formattedCurrency
+    }
 
     return "Rp $result"
 }

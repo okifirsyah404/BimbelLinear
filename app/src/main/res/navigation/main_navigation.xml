@@ -27,7 +27,9 @@
         tools:layout="@layout/fragment_on_boarding">
         <action
             android:id="@+id/action_onBoardingFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -36,7 +38,9 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -51,7 +55,13 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_homeFragment_to_attendanceDetailFragment"
-            app:destination="@id/attendanceDetailFragment" />
+            app:destination="@id/attendanceDetailFragment">
+            <argument
+                android:name="scheduleArgs"
+                android:defaultValue="@null"
+                app:argType="com.okifirsyah.bimbellinear.data.model.ScheduleModel"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -73,6 +83,11 @@
         <action
             android:id="@+id/action_profileFragment_to_otpFragment"
             app:destination="@id/otpFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/main_navigation"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/moduleBookFragment"
@@ -86,13 +101,30 @@
         tools:layout="@layout/fragment_attendance_history">
         <action
             android:id="@+id/action_attendanceHistoryFragment_to_attendanceDetailFragment"
-            app:destination="@id/attendanceDetailFragment" />
+            app:destination="@id/attendanceDetailFragment">
+            <argument
+                android:name="attendanceArgs"
+                android:defaultValue="@null"
+                app:argType="com.okifirsyah.bimbellinear.data.model.AttendanceModel"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/attendanceDetailFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.attendance_detail.AttendanceDetailFragment"
         android:label="fragment_attendance_detail"
-        tools:layout="@layout/fragment_attendance_detail" />
+        tools:layout="@layout/fragment_attendance_detail">
+        <argument
+            android:name="scheduleArgs"
+            android:defaultValue="@null"
+            app:argType="com.okifirsyah.bimbellinear.data.model.ScheduleModel"
+            app:nullable="true" />
+        <argument
+            android:name="attendanceArgs"
+            android:defaultValue="@null"
+            app:argType="com.okifirsyah.bimbellinear.data.model.AttendanceModel"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/billListFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.bill.BillListFragment"

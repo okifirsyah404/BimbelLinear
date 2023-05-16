@@ -9,4 +9,9 @@
     <string name="onboarding_title2">Persiapan Ujian</string>
     <string name="onboarding_title3">Kelulusan</string>
     <string name="description">Lorem ipsum dolor sit amet consectetur. Dictum sollicitudin sollicitudin amet ac. Vestibulum quis aliquam fringilla dolor adipiscing. Quisque mi elementum felis senectus in justo libero netus etiam. Pellentesque eu nulla adipiscing massa nunc.</string>
+    <string name="study_group">Kelompok Kelas</string>
+    <string name="study_group_type">Tipe Kelas</string>
+    <string name="study_group_member_count">Jumlah Anggota</string>
+    <string name="study_group_members">Anggota Kelompok</string>
+    <string name="join_group">Gabung Grup Whatsapp</string>
 </resources>

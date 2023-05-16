@@ -1,18 +1,19 @@
 package com.okifirsyah.bimbellinear.presentation.view.module_book
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.constant.PageTitleConstant
+import androidx.recyclerview.widget.GridLayoutManager
+import com.okifirsyah.bimbellinear.data.model.ModuleBookModel
 import com.okifirsyah.bimbellinear.databinding.FragmentModuleBookBinding
+import com.okifirsyah.bimbellinear.presentation.adapter.BookAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
+import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
 
 class ModuleBookFragment : BaseFragment<FragmentModuleBookBinding>() {
+
+    private val bookAdapter: BookAdapter by lazy { BookAdapter() }
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,21 +23,42 @@ class ModuleBookFragment : BaseFragment<FragmentModuleBookBinding>() {
     }
 
     override fun initAppBar() {
-        binding.toolbar.mainToolbar.title = PageTitleConstant.BOOK_MODULES
+        binding.toolbar.mainToolbar.title = pageTitleConstant.BOOK_MODULES
         binding.toolbar.mainToolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
     }
-    override fun initUI() {
 
+    override fun initUI() {
+        binding.rvModule.layoutManager = GridLayoutManager(context, 2)
+
+        val dummyBook = setDummyData()
+
+//        Move to observers
+        binding.rvModule.adapter = bookAdapter
+        bookAdapter.setData(
+            dummyBook
+        )
     }
 
     override fun initProcess() {
-        TODO("Not yet implemented")
     }
 
     override fun initObservers() {
-        TODO("Not yet implemented")
+    }
+
+    private fun setDummyData(): ArrayList<ModuleBookModel> {
+        val book = ArrayList<ModuleBookModel>()
+        book.add(ModuleBookModel(1, "1", "1"))
+        book.add(ModuleBookModel(2, "2", "2"))
+        book.add(ModuleBookModel(3, "3", "3"))
+        book.add(ModuleBookModel(4, "4", "4"))
+        book.add(ModuleBookModel(5, "5", "5"))
+        book.add(ModuleBookModel(6, "6", "6"))
+        book.add(ModuleBookModel(7, "7", "7"))
+        book.add(ModuleBookModel(8, "8", "8"))
+
+        return book
     }
 
 }

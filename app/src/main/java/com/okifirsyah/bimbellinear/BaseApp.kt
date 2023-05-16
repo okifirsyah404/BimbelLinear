@@ -3,7 +3,8 @@ package com.okifirsyah.bimbellinear
 import android.app.Application
 import android.content.Context
 import androidx.datastore.preferences.preferencesDataStore
-import com.okifirsyah.bimbellinear.di.sharedPreferencesModule
+import com.okifirsyah.bimbellinear.di.networkModule
+import com.okifirsyah.bimbellinear.di.preferenceModule
 import com.okifirsyah.bimbellinear.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -13,7 +14,7 @@ import timber.log.Timber
 
 private val Context.dataStore by preferencesDataStore(name = "settings")
 
-class BaseApp: Application() {
+class BaseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -25,8 +26,9 @@ class BaseApp: Application() {
             androidContext(this@BaseApp)
             modules(
                 listOf(
+                    networkModule,
                     viewModelModule,
-                    sharedPreferencesModule
+                    preferenceModule(dataStore),
 //                list of modules
                 ),
             )

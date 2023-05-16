@@ -30,6 +30,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initActions()
         initProcess()
         initObservers()
+        initOnRefresh()
 
     }
 
@@ -56,5 +57,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     protected open fun initActions() {}
 
     protected open fun initAppBar() {}
+
+    protected open fun initOnRefresh() {}
 
 }

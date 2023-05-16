@@ -1,6 +1,9 @@
 package com.okifirsyah.bimbellinear.utils.extensions
 
+import android.content.Intent
+import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
+import com.okifirsyah.bimbellinear.presentation.dialog.CameraOrGalleryDialog
 import com.okifirsyah.bimbellinear.presentation.dialog.ConfirmationDialog
 import com.okifirsyah.bimbellinear.presentation.dialog.SingleButtonDialog
 
@@ -43,3 +46,8 @@ fun Fragment.showCustomConfirmationDialog(
         onClickLeft = onCancel
     ).show(childFragmentManager, ConfirmationDialog.TAG)
 }
+
+fun Fragment.showCameraOrGalleryDialog(launcher: ActivityResultLauncher<Intent>) {
+    CameraOrGalleryDialog(launcher).show(childFragmentManager, CameraOrGalleryDialog.TAG)
+}
+

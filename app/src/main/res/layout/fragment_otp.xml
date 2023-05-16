@@ -1,100 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/viewBackgroundColor"
     android:orientation="vertical"
-    android:background="@color/neutral_100"
     tools:context=".presentation.view.otp.OtpFragment">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_main" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp"
-        >
-        <TextView
-            android:id="@+id/txtinbox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cek_inbox"
-            android:textSize="16sp"
-            android:textAlignment="center"
-            android:textColor="@color/neutral_20"
-            android:fontFamily="@font/mulish_regular" />
+        android:padding="20dp">
 
         <TextView
-            android:id="@+id/emailinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primary_40"
-            android:layout_marginTop="15dp"
-            android:textSize="16sp"
-            android:textAlignment="center"
             android:fontFamily="@font/mulish_regular"
-            tools:text="janedoe@mail.com"/>
+            android:text="@string/cek_inbox"
+            android:textAlignment="center"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/txt_user_email"
+            style="@style/LabelLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/mulish_regular"
+            android:textAlignment="center"
+            android:textColor="@color/primary_40"
+            tools:text="janedoe@mail.com" />
+
 
         <com.chaos.view.PinView
-        android:id="@+id/pin_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:cursorVisible="true"
-        android:inputType="number"
-        android:itemBackground="@color/neutral_100"
-        app:cursorColor="@color/neutral_0"
-        app:hideLineWhenFilled="true"
-        app:itemCount="6"
-        app:itemHeight="50dp"
-        app:itemRadius="5dp"
-        app:itemWidth="50dp"
-        app:lineColor="@color/neutral_0"
-        app:lineWidth="1dp" />
+            android:id="@+id/pin_view"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:cursorVisible="true"
+            android:fontFamily="@font/mulish_semi_bold"
+            android:inputType="number"
+            android:itemBackground="?attr/cardColor"
+            android:textColor="@color/primary_40"
+            android:textSize="18sp"
+            app:cursorColor="?attr/viewBackgroundColor"
+            app:itemCount="6"
+            app:itemHeight="60dp"
+            app:itemRadius="8dp"
+            app:itemSpacing="8dp"
+            app:itemWidth="40dp"
+            app:lineColor="?attr/boxBorderTextFieldColor"
+            app:lineWidth="1dp"
+            app:viewType="rectangle" />
 
         <Button
-            android:id="@+id/btnverifikasi"
+            android:id="@+id/btn_verify"
+            style="@style/FilledButtonTheme"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
-            android:text="Verifikasi"
-            style="@style/FilledButtonTheme"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:text="Verifikasi" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:gravity="center">
 
             <TextView
-                android:id="@+id/txtulang"
+                android:id="@+id/tv_text_resend"
+                style="@style/BodyMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Kirim ulang kode dalam "
-                android:textSize="16sp"
-                android:textAlignment="center"
-                android:textColor="@color/neutral_20"
-                android:fontFamily="@font/mulish_regular" />
+                android:textAlignment="textEnd" />
 
             <TextView
-                android:id="@+id/txtmenit"
+                android:id="@+id/btn_resend"
+                style="@style/BodyMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01:59 "
-                android:textSize="16sp"
                 android:layout_marginLeft="5dp"
-                android:textAlignment="center"
-                android:textColor="@color/neutral_20"
-                android:fontFamily="@font/mulish_bold"
-                android:layout_toRightOf="@+id/txtulang"/>
+                android:layout_toRightOf="@+id/tv_text_resend"
+                android:text="01:59 "
+                android:textAlignment="center" />
 
         </RelativeLayout>
     </LinearLayout>
-    </LinearLayout>
+</LinearLayout>

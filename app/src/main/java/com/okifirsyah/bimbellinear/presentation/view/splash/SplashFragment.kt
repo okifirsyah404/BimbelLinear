@@ -14,8 +14,11 @@ import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.databinding.FragmentSplashBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
+
+    val viewModel: SplashViewModel by inject()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +35,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         Handler(Looper.getMainLooper()).postDelayed({
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                    findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                    viewModel.getFirstLaunch().observe(
+                        viewLifecycleOwner
+                    ) { isFirstLaunch: Boolean ->
+                        if (isFirstLaunch) {
+                            findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                        } else {
+                            findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+                        }
+                    }
+
                 }
             }
         }, 3000)

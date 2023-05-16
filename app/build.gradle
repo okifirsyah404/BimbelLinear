@@ -1,8 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -53,6 +54,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
     //  PinView
 //    implementation 'com.chaos.view:pinview:1.4.3'
@@ -109,6 +111,13 @@ dependencies {
     //  Paris
     implementation 'com.airbnb.android:paris:2.0.0'
     kapt 'com.airbnb.android:paris-processor:2.0.0'
+
+    //  DotsIndicator
+    implementation("com.tbuonomo:dotsindicator:4.3")
+
+    //  ImagePicker
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.github.yalantis:ucrop:2.2.8'
 
 
 }

@@ -17,13 +17,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
 
-//        viewModel.getThemeSettings().observe(this
-//        ) { isDarkModeActive: Boolean ->
-//            if (isDarkModeActive) {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-//            } else {
-//                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-//            }
-//        }
+        viewModel.getThemeSettings().observe(
+            this
+        ) { isDarkModeActive: Boolean ->
+            if (isDarkModeActive) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
     }
 }

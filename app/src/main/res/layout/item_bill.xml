@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
     android:elevation="2dp"
     app:cardBackgroundColor="?attr/cardColor"
     app:cardCornerRadius="8dp">
@@ -15,17 +17,16 @@
 
         <TextView
             android:id="@+id/tv_bill_item_title"
-            style="@style/LabelMedium"
+            style="@style/LabelSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textColor="@color/primary_40"
             tools:text="Period" />
 
 
         <TextView
             android:id="@+id/tv_due_date_title"
-            style="@style/BodyMedium"
+            style="@style/BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_bill_item_title"
@@ -60,10 +61,10 @@
 
             <TextView
                 android:id="@+id/tv_bill_item_status"
-                style="@style/LabelSmall"
+                style="@style/BodySmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Date Time" />
+                tools:text="Status" />
 
             <View
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
 
             <TextView
                 android:id="@+id/tv_bill_item_total"
-                style="@style/LabelMedium"
+                style="@style/LabelSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Rp 600.000" />

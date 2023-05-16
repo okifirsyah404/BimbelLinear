@@ -22,5 +22,8 @@
         <item name="cardColor">@color/neutral_30</item>
         <item name="flatTextButtonColor">@color/primary_20</item>
         <item name="outlinedButtonStrokeColor">@color/neutral_100</item>
+        <item name="boxBorderTextFieldColor">@color/neutral_40</item>
+        <item name="mainTextColor">@color/neutral_100</item>
+        <item name="drawableContainerColor">@color/neutral_30</item>
     </style>
 </resources>

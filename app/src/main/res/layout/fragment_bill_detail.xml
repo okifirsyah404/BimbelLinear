@@ -1,134 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="?attr/viewBackgroundColor"
     android:orientation="vertical"
     tools:context=".presentation.view.bill_detail.BillDetailFragment">
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/toolbar_main" />
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="292dp"
-        android:background="@drawable/ic_launcher_background"
-        android:layout_marginBottom="20dp"
-        android:id="@+id/dropZone"
-        android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/previewImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerInside"
-            android:visibility="gone" />
-
-
-
-    </FrameLayout>
-
-    <LinearLayout
+        layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical" >
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tghbulan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/neutral_0"
-            android:textSize="18sp"
-            android:fontFamily="@font/mulish_extra_bold"
-            tools:text="Tagihan Bimbel Bulan September 2023"/>
-
-        <TextView
-            android:id="@+id/kelompok"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/neutral_20"
-            android:textSize="16sp"
-            android:fontFamily="@font/mulish_regular"
-            tools:text="Batas Tanggal Pembayaran" />
-
-        <TextView
-            android:id="@+id/txttipe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/neutral_0"
-            android:textSize="18sp"
-            android:fontFamily="@font/mulish_bold"
-            tools:text="17 September 2023"/>
-
-        <TextView
-            android:id="@+id/tipe"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/neutral_20"
-            android:textSize="16sp"
-            android:fontFamily="@font/mulish_regular"
-            tools:text="Status"/>
-
-        <TextView
-            android:id="@+id/txtjumlah"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/neutral_0"
-            android:textSize="18sp"
-            android:fontFamily="@font/mulish_bold"
-            tools:text="Pending"/>
-
-        <TextView
-            android:id="@+id/jumlah"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/neutral_20"
-            android:textSize="16sp"
-            android:fontFamily="@font/mulish_regular"
-            tools:text="Jumlah Tagihan"/>
-
-        <TextView
-            android:id="@+id/txttagihan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/neutral_0"
-            android:textSize="18sp"
-            android:fontFamily="@font/mulish_bold"
-            tools:text="Rp.6.000.000"/>
-    </LinearLayout>
-
-    <View
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        app:layout_constraintBottom_toTopOf="@id/ll_button_upload"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/btn_drop_zone"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:background="?attr/drawableContainerColor">
+
+                <ImageView
+                    android:id="@+id/iv_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_upload_camera"
+                    app:tint="@color/primary_50" />
+
+                <ImageView
+                    android:id="@+id/iv_preview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:scaleType="centerInside"
+                    android:visibility="gone" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_period"
+                    style="@style/LabelSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Tagihan Bimbel Bulan September 2023" />
+
+                <TextView
+                    style="@style/BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Batas Tanggal Pembayaran" />
+
+                <TextView
+                    android:id="@+id/tv_due_date"
+                    style="@style/LabelSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:text="17 September 2023" />
+
+                <TextView
+                    style="@style/BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Status" />
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    style="@style/LabelSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:text="Pending" />
+
+                <TextView
+                    style="@style/BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Jumlah Tagihan" />
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    style="@style/LabelSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    tools:text="Rp.6.000.000" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/ll_button_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/cardColor"
+        android:elevation="12dp"
+        android:orientation="vertical"
         android:padding="15dp"
-        android:background="@color/white"
-        android:elevation="2dp"
-        android:orientation="vertical">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            android:id="@+id/btnupload"
+            android:id="@+id/btn_upload"
             style="@style/FilledButtonTheme"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:text="Upload Bukti Transfer"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:text="Upload Bukti Transfer" />
+
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
