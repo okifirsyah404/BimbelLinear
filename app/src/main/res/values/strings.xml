@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BimbelLinear</string>
+    <string name="app_name">Bimbel Linear</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="place_holder_paragraph">Lorem ipsum dolor sit amet consectetur. Erat justo lobortis gravida phasellus. Pharetra senectus tortor morbi massa neque magna nunc nibh quis.</string>
     <string name="place_holder_person_name">John Doe</string>
@@ -14,4 +14,6 @@
     <string name="study_group_member_count">Jumlah Anggota</string>
     <string name="study_group_members">Anggota Kelompok</string>
     <string name="join_group">Gabung Grup Whatsapp</string>
+    <string name="schedule_subtitle">Jadwal Bimbel</string>
+    <string name="empty_schedule">Tidak ada jadwal</string>
 </resources>

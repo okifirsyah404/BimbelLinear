@@ -13,6 +13,8 @@
     <attr name="boxBorderTextFieldColor" format="reference" />
     <attr name="mainTextColor" format="reference" />
     <attr name="drawableContainerColor" format="reference" />
+    <attr name="disableFilledButtonColor" format="reference" />
+    <attr name="disableFilledButtonTextColor" format="reference" />
 
     <!--    Typography Theme-->
 
@@ -55,8 +57,8 @@
     <style name="FilledButtonTheme.Disable" parent="Widget.Material3.Button.UnelevatedButton">
         <item name="android:fontFamily">@font/mulish_bold</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">?attr/flatTextButtonColor</item>
-        <item name="android:backgroundTint">@color/primary_90</item>
+        <item name="android:textColor">?attr/disableFilledButtonTextColor</item>
+        <item name="android:backgroundTint">?attr/disableFilledButtonColor</item>
         <item name="android:textAllCaps">false</item>
     </style>
 

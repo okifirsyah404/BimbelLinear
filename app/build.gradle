@@ -17,7 +17,8 @@ android {
         versionCode 1
         versionName "1.0.0"
 
-        buildConfigField("String", "BASE_URL", '"https://google.com/"')
+        buildConfigField("String", "BASE_URL", '"https://linear.yoganova.my.id/api/siswa/"')
+        buildConfigField("String", "BASE_IMAGE_URL", '"https://linear.yoganova.my.id/img/siswa/"')
         buildConfigField("String", "DB_NAME", '"bimbel-linear-db"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -56,9 +57,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
-    //  PinView
-//    implementation 'com.chaos.view:pinview:1.4.3'
-
+    //PinView
     implementation 'io.github.chaosleung:pinview:1.4.4'
 
     //  ViewPager
@@ -118,6 +117,9 @@ dependencies {
     //  ImagePicker
     implementation 'com.github.dhaval2404:imagepicker:2.1'
     implementation 'com.github.yalantis:ucrop:2.2.8'
+
+    // UploadService
+    implementation 'net.gotev:uploadservice:4.7.0'
 
 
 }

@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.okifirsyah.bimbellinear.BuildConfig
-import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.databinding.FragmentSplashBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import kotlinx.coroutines.launch
@@ -39,9 +38,17 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                         viewLifecycleOwner
                     ) { isFirstLaunch: Boolean ->
                         if (isFirstLaunch) {
-                            findNavController().navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                            findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToOnBoardingFragment())
                         } else {
-                            findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+                            viewModel.getAuthToken().observe(
+                                viewLifecycleOwner
+                            ) { token: String ->
+                                if (token.isNotEmpty()) {
+                                    findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+                                } else {
+                                    findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToSignInFragment())
+                                }
+                            }
                         }
                     }
 

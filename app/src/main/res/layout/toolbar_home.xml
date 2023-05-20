@@ -35,7 +35,9 @@
             style="@style/LabelMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="John Doe" />
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="John Doe" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <View

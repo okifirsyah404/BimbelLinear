@@ -2,16 +2,14 @@ package com.okifirsyah.bimbellinear.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.okifirsyah.bimbellinear.data.model.ScheduleModel
 import com.okifirsyah.bimbellinear.databinding.ItemAttendanceBinding
-import com.okifirsyah.bimbellinear.presentation.view.home.HomeFragmentDirections
+import com.okifirsyah.bimbellinear.utils.extensions.toTitleCase
 
 class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
 
     private var itemList: ArrayList<ScheduleModel> = ArrayList()
-//    private var rvAttached: RecyclerView? = null
 
     fun setData(list: ArrayList<ScheduleModel>) {
         itemList.clear()
@@ -36,17 +34,9 @@ class ScheduleAdapter : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>
         binding.tvAttendanceItemTitle.text = item.subject
         binding.tvAttendanceItemRoom.text = item.room
         binding.tvAttendanceItemLecturer.text = item.teacher
-        binding.tvAttendanceDateTime.text = item.day
+        binding.tvAttendanceDateTime.text = item.day.toTitleCase()
         binding.tvAttendanceTimeOrStatus.text = item.time
 
-        binding.root.setOnClickListener {
-
-            val navDirections =
-                HomeFragmentDirections.actionHomeFragmentToAttendanceDetailFragment(scheduleArgs = item)
-
-            findNavController(it).navigate(navDirections)
-
-        }
 
     }
 

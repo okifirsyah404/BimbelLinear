@@ -2,7 +2,6 @@ package com.okifirsyah.bimbellinear.presentation.dialog
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.DialogFragment
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.okifirsyah.bimbellinear.databinding.DialogCameraOrGaleryBinding
-import java.io.File
 
 class CameraOrGalleryDialog(private val launcher: ActivityResultLauncher<Intent>) :
     DialogFragment() {
@@ -53,12 +51,6 @@ class CameraOrGalleryDialog(private val launcher: ActivityResultLauncher<Intent>
         ImagePicker.with(this)
             .compress(2048)
             .maxResultSize(1080, 1080)
-            .saveDir(
-                File(
-                    requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                    "bimbel_linear_images"
-                )
-            )
             .cameraOnly()
             .createIntent { intent ->
                 launcher.launch(intent)
@@ -69,12 +61,6 @@ class CameraOrGalleryDialog(private val launcher: ActivityResultLauncher<Intent>
         ImagePicker.with(this)
             .compress(2048)
             .maxResultSize(1080, 1080)
-            .saveDir(
-                File(
-                    requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                    "bimbel_linear_images"
-                )
-            )
             .galleryOnly()
             .galleryMimeTypes(
                 arrayOf(

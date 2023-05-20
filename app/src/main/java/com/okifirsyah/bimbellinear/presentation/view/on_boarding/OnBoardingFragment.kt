@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.databinding.FragmentOnBoardingBinding
 import com.okifirsyah.bimbellinear.presentation.adapter.ViewPagerAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
@@ -59,14 +58,14 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding>() {
             if (binding.viewPager.currentItem + 1 < fragmentList.size) {
                 binding.viewPager.currentItem += 1
             } else {
-                findNavController().navigate(R.id.action_onBoardingFragment_to_signInFragment)
+                findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToSignInFragment())
                 viewModel.saveFirstLaunch(false)
             }
         }
 
 
         binding.btnSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardingFragment_to_signInFragment)
+            findNavController().navigate(OnBoardingFragmentDirections.actionOnBoardingFragmentToSignInFragment())
             viewModel.saveFirstLaunch(false)
         }
     }

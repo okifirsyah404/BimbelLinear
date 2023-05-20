@@ -1,8 +1,8 @@
 package com.okifirsyah.bimbellinear.utils.enums
 
 enum class BillStatusEnum {
-    BELUM_DIBAYAR,
+    BELUM_BAYAR,
     PENDING,
     JATUH_TEMPO,
-    SELESAI
+    LUNAS
 }

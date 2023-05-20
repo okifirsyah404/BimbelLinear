@@ -52,7 +52,13 @@
             app:destination="@id/profileFragment"
             app:enterAnim="@anim/slide_up"
             app:popEnterAnim="@anim/slide_down"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="userProfileArgs"
+                android:defaultValue="@null"
+                app:argType="com.okifirsyah.bimbellinear.data.model.UserModel"
+                app:nullable="true" />
+        </action>
         <action
             android:id="@+id/action_homeFragment_to_attendanceDetailFragment"
             app:destination="@id/attendanceDetailFragment">
@@ -62,12 +68,20 @@
                 app:argType="com.okifirsyah.bimbellinear.data.model.ScheduleModel"
                 app:nullable="true" />
         </action>
+        <action
+            android:id="@+id/action_homeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile">
+        <argument
+            android:name="userProfileArgs"
+            android:defaultValue="@null"
+            app:argType="com.okifirsyah.bimbellinear.data.model.UserModel"
+            app:nullable="true" />
         <action
             android:id="@+id/action_profileFragment_to_moduleBookFragment"
             app:destination="@id/moduleBookFragment" />
@@ -132,13 +146,25 @@
         tools:layout="@layout/fragment_bill_list">
         <action
             android:id="@+id/action_billListFragment_to_billDetailFragment"
-            app:destination="@id/billDetailFragment" />
+            app:destination="@id/billDetailFragment">
+            <argument
+                android:name="billArgs"
+                android:defaultValue="@null"
+                app:argType="com.okifirsyah.bimbellinear.data.model.BillModel"
+                app:nullable="true" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/billDetailFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.bill_detail.BillDetailFragment"
         android:label="fragment_bill_detail"
-        tools:layout="@layout/fragment_bill_detail" />
+        tools:layout="@layout/fragment_bill_detail">
+        <argument
+            android:name="billArgs"
+            android:defaultValue="@null"
+            app:argType="com.okifirsyah.bimbellinear.data.model.BillModel"
+            app:nullable="true" />
+    </fragment>
     <fragment
         android:id="@+id/groupInfoFragment"
         android:name="com.okifirsyah.bimbellinear.presentation.view.group_info.GroupInfoFragment"

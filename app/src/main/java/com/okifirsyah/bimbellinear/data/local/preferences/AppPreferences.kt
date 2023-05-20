@@ -13,6 +13,7 @@ class AppPreferences(private val dataStore: DataStore<Preferences>) {
     private val authTokenKey = stringPreferencesKey("auth_token")
     private val themeKey = booleanPreferencesKey("theme_setting")
     private val firstLaunchKey = booleanPreferencesKey("first_launch")
+    private val changePasswordKey = booleanPreferencesKey("change_password")
 
     fun getThemeSetting(): Flow<Boolean> {
         return dataStore.data.map { preferences ->
@@ -47,6 +48,18 @@ class AppPreferences(private val dataStore: DataStore<Preferences>) {
     suspend fun saveFirstLaunch(isFirstLaunch: Boolean) {
         dataStore.edit { preferences ->
             preferences[firstLaunchKey] = isFirstLaunch
+        }
+    }
+
+    fun getChangePassword(): Flow<Boolean> {
+        return dataStore.data.map { preferences ->
+            preferences[changePasswordKey] ?: false
+        }
+    }
+
+    suspend fun saveChangePassword(isChangePassword: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[changePasswordKey] = isChangePassword
         }
     }
 

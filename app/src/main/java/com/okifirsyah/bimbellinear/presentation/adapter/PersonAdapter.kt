@@ -3,14 +3,18 @@ package com.okifirsyah.bimbellinear.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.okifirsyah.bimbellinear.data.model.PersonModel
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.okifirsyah.bimbellinear.BuildConfig
+import com.okifirsyah.bimbellinear.data.model.MemberGroupModel
 import com.okifirsyah.bimbellinear.databinding.ItemGroupInfoBinding
+import com.okifirsyah.bimbellinear.utils.extensions.toTitleCase
 
 class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
-    private var personList: ArrayList<PersonModel> = ArrayList()
+    private var personList: ArrayList<MemberGroupModel> = ArrayList()
 
-    fun setData(list: ArrayList<PersonModel>) {
+    fun setData(list: ArrayList<MemberGroupModel>) {
         personList.clear()
         personList.addAll(list)
     }
@@ -25,8 +29,14 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
         val binding = ItemGroupInfoBinding.bind(holder.itemView)
         val person = personList[position]
 
+        Glide.with(holder.itemView)
+            .load("${BuildConfig.BASE_IMAGE_URL}${person.id}.jpg")
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .circleCrop()
+            .into(binding.civPerson)
+
         binding.tvPersonName.text = person.name
-        binding.tvPersonStatus.text = person.status
+        binding.tvPersonStatus.text = person.memberStatus?.toTitleCase()
     }
 
     override fun getItemCount(): Int = personList.size

@@ -15,116 +15,113 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/l_refresh_group_info"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_above="@id/ll_button"
+        android:layout_height="match_parent"
         android:layout_below="@id/toolbar">
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/ll_main_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+            android:layout_height="0dp"
+            android:layout_below="@id/toolbar"
+            android:layout_alignParentBottom="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
                 android:orientation="vertical">
 
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/LabelSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/study_group" />
+
+                    <TextView
+                        android:id="@+id/tv_group"
+                        style="@style/BodyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        tools:text="6A" />
+
+                    <TextView
+                        style="@style/LabelSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/study_group_type" />
+
+                    <TextView
+                        android:id="@+id/tv_group_type"
+                        style="@style/BodyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        tools:text="Reguler" />
+
+                    <TextView
+                        style="@style/LabelSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/study_group_member_count" />
+
+                    <TextView
+                        android:id="@+id/tv_group_member_count"
+                        style="@style/BodyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="8dp"
+                        tools:text="12" />
+                </LinearLayout>
+
+                <include
+                    layout="@layout/layout_view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
                 <TextView
                     style="@style/LabelSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/study_group" />
-
-                <TextView
-                    android:id="@+id/tv_group"
-                    style="@style/BodyMedium"
-                    android:layout_width="151dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    tools:text="6A" />
-
-                <TextView
-                    style="@style/LabelSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="@string/study_group_type" />
-
-                <TextView
-                    android:id="@+id/tv_group_type"
-                    style="@style/BodyMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    tools:text="Reguler" />
-
-                <TextView
-                    style="@style/LabelSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/study_group_member_count" />
-
-                <TextView
-                    android:id="@+id/tv_group_member_count"
-                    style="@style/BodyMedium"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="8dp"
-                    tools:text="12" />
+                    android:text="@string/study_group_members" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_group_info" />
+
             </LinearLayout>
+        </ScrollView>
 
-            <include
-                layout="@layout/layout_view_divider"
-                android:layout_width="match_parent"
-                android:layout_height="12dp" />
-
-            <TextView
-                style="@style/LabelSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/study_group_members" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_group_info" />
-
-        </LinearLayout>
-    </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-    <LinearLayout
-        android:id="@+id/ll_button"
+    <include
+        android:id="@+id/home_loading"
+        layout="@layout/layout_loading"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="?attr/cardColor"
-        android:elevation="16dp"
-        android:orientation="vertical"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="10dp">
-
-        <Button
-            android:id="@+id/btn_change_password"
-            style="@style/FilledButtonTheme"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/join_group" />
-    </LinearLayout>
-
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp" />
 
 </RelativeLayout>

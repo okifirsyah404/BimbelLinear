@@ -7,13 +7,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.data.model.BillModel
 import com.okifirsyah.bimbellinear.databinding.ItemBillBinding
+import com.okifirsyah.bimbellinear.presentation.view.bill.BillListFragmentDirections
 import com.okifirsyah.bimbellinear.utils.enums.BillStatusEnum
 import com.okifirsyah.bimbellinear.utils.extensions.enumValueToTitleCase
+import com.okifirsyah.bimbellinear.utils.extensions.getFormattedDate
+import com.okifirsyah.bimbellinear.utils.extensions.titleCaseToEnumValue
+import com.okifirsyah.bimbellinear.utils.extensions.toDate
 import com.okifirsyah.bimbellinear.utils.extensions.toRupiah
+import com.okifirsyah.bimbellinear.utils.extensions.toTitleCase
 
 class BillAdapter : RecyclerView.Adapter<BillAdapter.BillViewHolder>() {
 
-    private var listBill: ArrayList<BillModel> = ArrayList<BillModel>()
+    private var listBill: ArrayList<BillModel> = ArrayList()
 
     fun setData(items: ArrayList<BillModel>) {
         listBill.clear()
@@ -36,35 +41,50 @@ class BillAdapter : RecyclerView.Adapter<BillAdapter.BillViewHolder>() {
 
         val bindingContextRes = binding.root.context
 
-        binding.tvBillItemTitle.text = "Tagihan Bimbel Bulan ${item.period}"
-        binding.tvBillItemTotal.text = item.total.toRupiah()
-        binding.tvBillItemStatus.text = item.status.enumValueToTitleCase()
-        binding.tvBillItemDueDate.text = item.date
+        binding.tvBillItemTitle.text =
+            "Tagihan Bimbel Bulan ${item.month?.toTitleCase()} ${item.year}"
+        binding.tvBillItemTotal.text = item.amount?.toRupiah()
+        binding.tvBillItemStatus.text = item.status?.enumValueToTitleCase()
+        binding.tvBillItemDueDate.text = item.dueDate?.toDate()?.getFormattedDate()
 
-        if (item.status != BillStatusEnum.BELUM_DIBAYAR.name) {
-            binding.tvBillItemStatus.setTextColor(
-                bindingContextRes.getColor(
-                    getStatusColor(item.status)
+        if (item.status?.toTitleCase()
+                ?.titleCaseToEnumValue() != BillStatusEnum.BELUM_BAYAR.name
+        ) {
+            binding.apply {
+                tvBillItemStatus.setTextColor(
+                    bindingContextRes.getColor(
+                        getBillStatusColor(item.status ?: BillStatusEnum.BELUM_BAYAR.name)
+                    )
                 )
-            )
-
-            binding.tvBillItemTotal.setTextColor(
-                bindingContextRes.getColor(
-                    getStatusColor(item.status)
+                tvBillItemTotal.setTextColor(
+                    bindingContextRes.getColor(
+                        getBillStatusColor(
+                            item.status?.toTitleCase()?.titleCaseToEnumValue()
+                                ?: BillStatusEnum.BELUM_BAYAR.name
+                        )
+                    )
                 )
-            )
+            }
         }
 
-        binding.root.setOnClickListener {
-            findNavController(it).navigate(R.id.action_billListFragment_to_billDetailFragment)
+        binding.root.setOnClickListener { view ->
+
+            val navDirection =
+                BillListFragmentDirections.actionBillListFragmentToBillDetailFragment(
+                    item
+                )
+
+            findNavController(view).navigate(
+                navDirection
+            )
         }
 
     }
 
-    private fun getStatusColor(status: String): Int {
+    private fun getBillStatusColor(status: String): Int {
         return when (status) {
             BillStatusEnum.JATUH_TEMPO.name -> R.color.error_50
-            BillStatusEnum.SELESAI.name -> R.color.primary_40
+            BillStatusEnum.LUNAS.name -> R.color.primary_40
             BillStatusEnum.PENDING.name -> R.color.secondary_50
             else -> R.color.neutral_0
         }

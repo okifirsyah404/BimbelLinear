@@ -50,6 +50,21 @@
 
             </FrameLayout>
 
+            <TextView
+                android:id="@+id/tv_period"
+                style="@style/LabelSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="16dp"
+                tools:text="Tagihan Bimbel Bulan September 2023" />
+
+            <include
+                android:id="@+id/divider_title_to_dates"
+                layout="@layout/layout_view_divider"
+                android:layout_width="match_parent"
+                android:layout_height="12dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,56 +72,107 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:id="@+id/tv_period"
-                    style="@style/LabelSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:text="Tagihan Bimbel Bulan September 2023" />
-
-                <TextView
                     style="@style/BodyMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Batas Tanggal Pembayaran" />
+                    android:text="Tanggal Batas Pembayaran" />
 
                 <TextView
                     android:id="@+id/tv_due_date"
                     style="@style/LabelSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
+                    android:layout_marginBottom="12dp"
                     tools:text="17 September 2023" />
 
                 <TextView
                     style="@style/BodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Status" />
+                    android:text="Tanggal Pembayaran" />
 
                 <TextView
-                    android:id="@+id/tv_status"
+                    android:id="@+id/tv_payment_date"
                     style="@style/LabelSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    tools:text="Pending" />
+                    android:layout_marginBottom="12dp"
+                    tools:text="17 September 2023" />
 
                 <TextView
                     style="@style/BodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Jumlah Tagihan" />
+                    android:text="Tanggal Pembayaran Diterima" />
 
                 <TextView
-                    android:id="@+id/tv_total"
+                    android:id="@+id/tv_approved_date"
                     style="@style/LabelSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    tools:text="Rp.6.000.000" />
+                    tools:text="17 September 2023" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_transfers_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <include
+                    android:id="@+id/divider_dates_to_transfers_info"
+                    layout="@layout/layout_view_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+                <TextView
+                    style="@style/BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Bank Tujuan" />
+
+                <TextView
+                    android:id="@+id/tv_bank_name"
+                    style="@style/LabelSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="12dp"
+                    tools:text="Bank" />
+
+                <TextView
+                    style="@style/BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="Nomor Rekening" />
+
+                <TextView
+                    android:id="@+id/tv_account_number"
+                    style="@style/LabelSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:drawablePadding="8dp"
+                    app:drawableRightCompat="@drawable/ic_content_copy_24"
+                    app:drawableTint="@color/primary_40"
+                    tools:text="0123456789" />
+
             </LinearLayout>
 
 
@@ -123,6 +189,32 @@
         android:orientation="vertical"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_status"
+                style="@style/LabelSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Pending" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_total"
+                style="@style/LabelSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Rp.6.000.000" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_upload"

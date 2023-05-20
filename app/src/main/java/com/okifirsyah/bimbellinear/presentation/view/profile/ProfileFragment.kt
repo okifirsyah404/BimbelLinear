@@ -11,12 +11,17 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.dhaval2404.imagepicker.ImagePicker
+import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.databinding.FragmentProfileBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
 import com.okifirsyah.bimbellinear.utils.constant.stateKeyConstant
+import com.okifirsyah.bimbellinear.utils.extensions.intentToPackageSettings
 import com.okifirsyah.bimbellinear.utils.extensions.showCameraOrGalleryDialog
 import com.okifirsyah.bimbellinear.utils.extensions.showCustomDialog
 import com.okifirsyah.bimbellinear.utils.helper.renameFile
@@ -25,6 +30,8 @@ import timber.log.Timber
 
 class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val viewModel: ProfileViewModel by inject()
+
+    private val args: ProfileFragmentArgs by navArgs()
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -43,12 +50,61 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initUI() {
+        initUserProfile()
     }
 
     override fun initProcess() {
+        viewModel.getAuthToken()
     }
 
     override fun initObservers() {
+        initTheme()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        val scrollView = view?.findViewById<ScrollView>(R.id.sv_profile)
+        val position: IntArray = intArrayOf(scrollView?.scrollX ?: 0, scrollView?.scrollY ?: 0)
+
+        if (position.isNotEmpty()) {
+            outState.putIntArray(
+                stateKeyConstant.PROFILE_SCROLL_POSITION,
+                position
+            )
+        }
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        val position = savedInstanceState?.getIntArray(stateKeyConstant.PROFILE_SCROLL_POSITION)
+        if (position != null) {
+            binding.svProfile.post { binding.svProfile.scrollTo(position[0], position[1]) }
+        }
+    }
+
+    override fun initIntent() {
+        binding.btnTileModule.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToModuleBookFragment())
+        }
+        binding.btnTileChangePassword.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOtpFragment())
+        }
+        binding.btnTileLogout.setOnClickListener {
+            logout()
+        }
+        binding.btnTileGroupInfo.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToGroupInfoFragment())
+        }
+        binding.btnTileBill.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToBillListFragment())
+        }
+        binding.civPersonAvatar.setOnClickListener {
+            showCameraOrGalleryDialog(launcher)
+        }
+    }
+
+    private fun initTheme() {
         viewModel.getThemeSettings().observe(
             this
         ) { isDarkModeActive: Boolean ->
@@ -66,51 +122,33 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+    private fun initUserProfile() {
+        initUserAvatar()
+        val userProfile = args.userProfileArgs
 
-        val scrollView = view?.findViewById<ScrollView>(R.id.sv_profile)
-        val position: IntArray = intArrayOf(scrollView?.scrollX ?: 0, scrollView?.scrollY ?: 0)
-
-        if (position.isNotEmpty()) {
-            outState.putIntArray(
-                stateKeyConstant.profileScrollPosition,
-                position
-            )
+        if (userProfile != null) {
+            binding.apply {
+                tvPersonName.text = userProfile.name
+                tvProfileGroup.text = userProfile.group
+                tvGroupType.text = userProfile.groupType
+            }
         }
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        val position = savedInstanceState?.getIntArray(stateKeyConstant.profileScrollPosition)
-        if (position != null) {
-            binding.svProfile.post { binding.svProfile.scrollTo(position[0], position[1]) }
-        }
+    private fun initUserAvatar() {
+        Glide.with(this)
+            .load("${BuildConfig.BASE_IMAGE_URL}${args.userProfileArgs?.id}.jpg")
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .circleCrop()
+            .into(binding.civPersonAvatar)
     }
 
-    override fun initIntent() {
-        binding.btnTileModule.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_moduleBookFragment)
-        }
-        binding.btnTileChangePassword.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_otpFragment)
-        }
-        binding.btnTileLogout.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_signInFragment)
-        }
-        binding.btnTileGroupInfo.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_groupInfoFragment)
-        }
-        binding.btnTileAttendance.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_attendanceHistoryFragment)
-        }
-        binding.btnTileBill.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_billListFragment)
-        }
-        binding.civPersonAvatar.setOnClickListener {
-            showCameraOrGalleryDialog(launcher)
-        }
+    private fun logout() {
+        viewModel.setAuthToken("")
+        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSignInFragment())
     }
+
 
     private val launcher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -119,26 +157,39 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
             when (resultCode) {
                 Activity.RESULT_OK -> {
-                    //Image Uri will not be null for RESULT_OK
                     val fileUri = data?.data
 
                     fileUri?.let { uri ->
                         Timber.tag("URI_LOC").d("onActivityResult: " + uri)
                         val renamedFile = renameFile(fileUri.path!!, "img_avatar")
 
-                        Timber.tag("URI_LOC").d("onActivityResult: " + renamedFile)
+                        viewModel.userToken.observe(viewLifecycleOwner) { token ->
+                            viewModel.uploadAvatar(
+                                requireContext(),
+                                viewLifecycleOwner,
+                                token,
+                                renamedFile!!,
+                            )
+                        }
 
-//                        Glide.with(this).
-
+                        Glide.with(this)
+                            .load(renamedFile)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .circleCrop()
+                            .into(binding.civPersonAvatar)
                     }
-
 
                 }
 
                 ImagePicker.RESULT_ERROR -> {
                     showCustomDialog(
-                        "Terjadi Kesalahan",
-                        "Terjadi Kesalahan saat mengambil gambar",
+                        "Izin Diperlukan",
+                        "Silahkan berikan izin untuk mengakses kamera dan penyimpanan",
+                        submitText = "Buka Pengaturan",
+                        onSubmit = {
+                            intentToPackageSettings()
+                        }
                     )
                 }
 
@@ -147,6 +198,4 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
             }
         }
-
-
 }

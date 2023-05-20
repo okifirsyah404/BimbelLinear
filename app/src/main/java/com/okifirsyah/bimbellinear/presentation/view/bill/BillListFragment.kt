@@ -2,18 +2,26 @@ package com.okifirsyah.bimbellinear.presentation.view.bill
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.okifirsyah.bimbellinear.data.model.BillModel
+import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.databinding.FragmentBillListBinding
 import com.okifirsyah.bimbellinear.presentation.adapter.BillAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
+import com.okifirsyah.bimbellinear.presentation.dialog.SingleButtonDialog
+import com.okifirsyah.bimbellinear.presentation.view.home.HomeFragmentDirections
+import com.okifirsyah.bimbellinear.utils.constant.dialogConstant
 import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
-import com.okifirsyah.bimbellinear.utils.enums.BillStatusEnum
+import com.okifirsyah.bimbellinear.utils.extensions.showCustomDialog
+import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class BillListFragment : BaseFragment<FragmentBillListBinding>() {
 
+    private val viewModel: BillListViewModel by inject()
     private val billAdapter: BillAdapter by lazy { BillAdapter() }
     override fun getViewBinding(
         inflater: LayoutInflater,
@@ -31,123 +39,66 @@ class BillListFragment : BaseFragment<FragmentBillListBinding>() {
     }
 
     override fun initUI() {
-
         binding.rvBill.layoutManager = LinearLayoutManager(context)
-
-//        Move to Observer if real data
-        val dummyBill = setDummyData()
-
-        binding.rvBill.adapter = billAdapter
-        billAdapter.setData(
-            dummyBill
-        )
-
-
     }
 
     override fun initProcess() {
+        viewModel.fetchBill()
     }
 
     override fun initObservers() {
+        initBillList()
     }
 
-    private fun setDummyData(): ArrayList<BillModel> {
-        val dummyBill = ArrayList<BillModel>()
+    private fun initBillList() {
+        viewModel.billResult.observe(viewLifecycleOwner) { response ->
+            when (response) {
 
-        dummyBill.add(
-            BillModel(
-                1,
-                period = "Januari 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.SELESAI.name,
-                total = 100000,
-            )
-        )
+                is ApiResponse.Loading -> {
+                    Timber.tag("BILL").d("Loading")
+                    initLoading(true)
+                }
 
-        dummyBill.add(
-            BillModel(
-                2,
-                period = "Februari 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.BELUM_DIBAYAR.name,
-                total = 100000,
-            )
-        )
+                is ApiResponse.Success -> {
+                    initLoading(false)
 
-        dummyBill.add(
-            BillModel(
-                3,
-                period = "Maret 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.JATUH_TEMPO.name,
-                total = 100000,
-            )
-        )
+                    val responseData = response.data.data
+                    binding.rvBill.adapter = billAdapter
 
-        dummyBill.add(
-            BillModel(
-                4,
-                period = "April 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.PENDING.name,
-                total = 100000,
-            )
-        )
+                    billAdapter.setData(
+                        responseData as ArrayList<BillModel>
+                    )
 
-        dummyBill.add(
-            BillModel(
-                5,
-                period = "Mei 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.SELESAI.name,
-                total = 100000,
-            )
-        )
+                }
 
-        dummyBill.add(
-            BillModel(
-                6,
-                period = "Juni 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.BELUM_DIBAYAR.name,
-                total = 100000,
-            )
-        )
+                is ApiResponse.Error -> {
+                    Timber.tag("BILL").e(response.errorMessage)
+                    showCustomDialog(
+                        dialogConstant.ERROR_TITLE,
+                        response.errorMessage,
+                        dialogType = SingleButtonDialog.FAILED_DIALOG,
+                        submitText = "Login",
+                        onSubmit = {
+                            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
+                        }
+                    )
+                }
 
-        dummyBill.add(
-            BillModel(
-                7,
-                period = "Juli 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.JATUH_TEMPO.name,
-                total = 100000,
-            )
-        )
-
-        dummyBill.add(
-            BillModel(
-                8,
-                period = "Agustus 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.PENDING.name,
-                total = 100000,
-            )
-        )
-
-        dummyBill.add(
-            BillModel(
-                9,
-                period = "September 2023",
-                date = "12/12/2021",
-                status = BillStatusEnum.SELESAI.name,
-                total = 100000,
-            )
-        )
-
-        return dummyBill
-
-
+                else -> {
+                    Timber.tag("BILL").d("Loading 2")
+                }
+            }
+        }
     }
 
+    private fun initLoading(isLoading: Boolean) {
+        if (isLoading) binding.apply {
+            rvBill.visibility = View.GONE
+            homeLoading.layoutLoading.visibility = View.VISIBLE
+        } else binding.apply {
+            rvBill.visibility = View.VISIBLE
+            homeLoading.layoutLoading.visibility = View.GONE
+        }
+    }
 
 }

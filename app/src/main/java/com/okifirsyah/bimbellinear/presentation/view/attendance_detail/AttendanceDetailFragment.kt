@@ -44,7 +44,7 @@ class AttendanceDetailFragment : BaseFragment<FragmentAttendanceDetailBinding>()
 
         if (schedule != null) {
             binding.tvStudy.text = schedule.subject
-            binding.tvDateTime.text = "${schedule.day}, ${schedule.time}"
+            binding.tvDateTime.text = "${schedule.time}, ${schedule.time}"
             binding.tvLecturer.text = schedule.teacher
             binding.tvStudyRoom.text = schedule.room
         }

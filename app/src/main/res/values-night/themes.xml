@@ -25,5 +25,8 @@
         <item name="boxBorderTextFieldColor">@color/neutral_40</item>
         <item name="mainTextColor">@color/neutral_100</item>
         <item name="drawableContainerColor">@color/neutral_30</item>
+        <item name="disableFilledButtonColor">@color/neutral_20</item>
+        <item name="disableFilledButtonTextColor">@color/neutral_50</item>
+
     </style>
 </resources>

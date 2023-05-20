@@ -31,7 +31,6 @@
                 android:layout_height="84dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
-                android:src="@drawable/splash_3"
                 app:civ_border_color="@color/primary_40"
                 app:civ_border_width="2dp"
                 tools:src="@tools:sample/avatars" />
@@ -44,7 +43,7 @@
                 android:layout_below="@+id/civ_person_avatar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginVertical="16dp"
-                android:text="@string/place_holder_person_name" />
+                tools:text="@string/place_holder_person_name" />
 
             <include
                 android:id="@+id/divider_profile_to_group"
@@ -81,14 +80,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="12dp"
                     android:text="Kelompok Kelas" />
 
                 <TextView
                     style="@style/LabelSmall"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:text="Tipe Kelas" />
 
@@ -153,33 +151,33 @@
                     android:layout_height="1dp"
                     android:layout_below="@+id/btn_tile_module" />
 
-                <LinearLayout
-                    android:id="@+id/btn_tile_attendance"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="16dp">
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/btn_tile_attendance"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:orientation="horizontal"-->
+                <!--                    android:paddingHorizontal="4dp"-->
+                <!--                    android:paddingVertical="16dp">-->
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_calendar" />
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginEnd="16dp"-->
+                <!--                        android:src="@drawable/ic_calendar" />-->
 
-                    <TextView
-                        style="@style/BodyMedium"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kehadiran" />
+                <!--                    <TextView-->
+                <!--                        style="@style/BodyMedium"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:text="Kehadiran" />-->
 
-                </LinearLayout>
+                <!--                </LinearLayout>-->
 
-                <include
-                    layout="@layout/layout_divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@+id/btn_tile_module" />
+                <!--                <include-->
+                <!--                    layout="@layout/layout_divider"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="1dp"-->
+                <!--                    android:layout_below="@+id/btn_tile_module" />-->
 
                 <LinearLayout
                     android:id="@+id/btn_tile_bill"
