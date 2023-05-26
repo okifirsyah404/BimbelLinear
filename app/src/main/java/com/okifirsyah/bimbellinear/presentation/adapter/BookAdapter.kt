@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.okifirsyah.bimbellinear.R
-import com.okifirsyah.bimbellinear.data.model.ModuleBookModel
+import com.okifirsyah.bimbellinear.data.model.BookModel
 import com.okifirsyah.bimbellinear.databinding.ItemModuleBookBinding
 
 class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
-    private var bookList: ArrayList<ModuleBookModel> = ArrayList()
+    private var bookList: ArrayList<BookModel> = ArrayList()
 
-    fun setData(list: ArrayList<ModuleBookModel>) {
+    fun setData(list: ArrayList<BookModel>) {
         bookList.clear()
         bookList.addAll(list)
 //        notifyDataSetChanged()

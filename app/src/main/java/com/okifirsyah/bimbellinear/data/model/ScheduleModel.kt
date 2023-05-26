@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "user")
+@Entity(tableName = "schedule")
 data class ScheduleModel(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = false)

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.okifirsyah.bimbellinear.data.model.ModuleBookModel
+import com.okifirsyah.bimbellinear.data.model.BookModel
 import com.okifirsyah.bimbellinear.databinding.FragmentModuleBookBinding
 import com.okifirsyah.bimbellinear.presentation.adapter.BookAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
@@ -47,16 +47,16 @@ class ModuleBookFragment : BaseFragment<FragmentModuleBookBinding>() {
     override fun initObservers() {
     }
 
-    private fun setDummyData(): ArrayList<ModuleBookModel> {
-        val book = ArrayList<ModuleBookModel>()
-        book.add(ModuleBookModel(1, "1", "1"))
-        book.add(ModuleBookModel(2, "2", "2"))
-        book.add(ModuleBookModel(3, "3", "3"))
-        book.add(ModuleBookModel(4, "4", "4"))
-        book.add(ModuleBookModel(5, "5", "5"))
-        book.add(ModuleBookModel(6, "6", "6"))
-        book.add(ModuleBookModel(7, "7", "7"))
-        book.add(ModuleBookModel(8, "8", "8"))
+    private fun setDummyData(): ArrayList<BookModel> {
+        val book = ArrayList<BookModel>()
+        book.add(BookModel(1, "1", "1"))
+        book.add(BookModel(2, "2", "2"))
+        book.add(BookModel(3, "3", "3"))
+        book.add(BookModel(4, "4", "4"))
+        book.add(BookModel(5, "5", "5"))
+        book.add(BookModel(6, "6", "6"))
+        book.add(BookModel(7, "7", "7"))
+        book.add(BookModel(8, "8", "8"))
 
         return book
     }

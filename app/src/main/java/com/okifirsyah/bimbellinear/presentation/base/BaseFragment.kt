@@ -37,7 +37,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
+        onClose()
     }
 
     abstract fun getViewBinding(
@@ -57,7 +57,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     protected open fun initActions() {}
 
     protected open fun initAppBar() {}
-
+    
     protected open fun initOnRefresh() {}
+    protected open fun onClose() {}
 
 }

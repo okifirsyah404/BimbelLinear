@@ -13,7 +13,7 @@ data class UserModel(
     @ColumnInfo(name = "id")
     @PrimaryKey(autoGenerate = false)
     @field:SerializedName("id")
-    val id: String?,
+    val id: String,
 
     @field:SerializedName("name")
     val name: String? = null,

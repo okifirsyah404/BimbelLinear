@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
+import com.bumptech.glide.request.RequestOptions
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.R
@@ -35,6 +36,7 @@ import com.okifirsyah.bimbellinear.utils.extensions.toDate
 import com.okifirsyah.bimbellinear.utils.extensions.toRupiah
 import com.okifirsyah.bimbellinear.utils.extensions.toTitleCase
 import com.okifirsyah.bimbellinear.utils.helper.renameFile
+import jp.wasabeef.glide.transformations.BlurTransformation
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 import java.io.File
@@ -171,6 +173,7 @@ class BillDetailFragment : BaseFragment<FragmentBillDetailBinding>() {
         binding.apply {
             ivPlaceholder.visibility = View.GONE
             ivPreview.visibility = View.VISIBLE
+            ivPreviewBackground.visibility = View.VISIBLE
 
             ivPlaceholder.setOnClickListener(null)
             ivPreview.setOnClickListener(null)
@@ -188,6 +191,14 @@ class BillDetailFragment : BaseFragment<FragmentBillDetailBinding>() {
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .into(binding.ivPreview)
+
+        Glide.with(this)
+            .load(glideUrl)
+            .apply(RequestOptions.bitmapTransform(BlurTransformation(16)))
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
+            .into(binding.ivPreviewBackground)
+
     }
 
     private fun uploadBill() {
@@ -261,8 +272,19 @@ class BillDetailFragment : BaseFragment<FragmentBillDetailBinding>() {
                             .skipMemoryCache(true)
                             .into(binding.ivPreview)
 
-                        binding.ivPlaceholder.visibility = View.GONE
-                        binding.ivPreview.visibility = View.VISIBLE
+                        Glide.with(this)
+                            .load(renamedFile)
+                            .apply(RequestOptions.bitmapTransform(BlurTransformation(16)))
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(binding.ivPreviewBackground)
+
+                        binding.apply {
+                            ivPlaceholder.visibility = View.GONE
+                            ivPreview.visibility = View.VISIBLE
+                            ivPreviewBackground.visibility = View.VISIBLE
+                        }
+
                     }
                 }
 

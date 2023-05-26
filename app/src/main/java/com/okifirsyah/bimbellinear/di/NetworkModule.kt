@@ -37,7 +37,6 @@ val networkModule = module {
             .build()
     }
 
-
     single { provideAuthService(get()) }
     single { provideScheduleService(get()) }
     single { provideGroupService(get()) }

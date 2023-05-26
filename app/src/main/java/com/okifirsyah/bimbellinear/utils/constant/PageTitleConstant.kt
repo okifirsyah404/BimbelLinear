@@ -9,5 +9,7 @@ object pageTitleConstant {
     const val BILL_DETAIL = "Detail Tagihan"
     const val GROUP_INFO = "Informasi Kelompok"
     const val OTP = "Verifikasi Email"
-    const val CHANGE_PASSWORD = "Ubah Password"
+    const val CHANGE_PASSWORD = "Ubah Kata Sandi"
+    const val RESET_PASSWORD = "Reset Kata Sandi"
+    const val FORGET_PASSWORD = "Lupa Kata Sandi"
 }

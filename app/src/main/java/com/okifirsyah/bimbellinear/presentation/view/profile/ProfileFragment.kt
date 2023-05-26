@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.R
+import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.databinding.FragmentProfileBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
@@ -24,6 +25,7 @@ import com.okifirsyah.bimbellinear.utils.constant.stateKeyConstant
 import com.okifirsyah.bimbellinear.utils.extensions.intentToPackageSettings
 import com.okifirsyah.bimbellinear.utils.extensions.showCameraOrGalleryDialog
 import com.okifirsyah.bimbellinear.utils.extensions.showCustomDialog
+import com.okifirsyah.bimbellinear.utils.extensions.showHttpErrorDialog
 import com.okifirsyah.bimbellinear.utils.helper.renameFile
 import org.koin.android.ext.android.inject
 import timber.log.Timber
@@ -41,11 +43,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initAppBar() {
-        binding.toolbar.mainToolbar.title = pageTitleConstant.PROFILE
-        binding.toolbar.mainToolbar.navigationIcon =
-            ContextCompat.getDrawable(requireContext(), R.drawable.ic_close)
-        binding.toolbar.mainToolbar.setNavigationOnClickListener {
-            findNavController().navigateUp()
+        binding.toolbar.mainToolbar.apply {
+            title = pageTitleConstant.PROFILE
+            navigationIcon =
+                ContextCompat.getDrawable(requireContext(), R.drawable.ic_close)
+            setNavigationOnClickListener {
+                findNavController().navigateUp()
+            }
         }
     }
 
@@ -87,11 +91,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.btnTileModule.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToModuleBookFragment())
         }
-        binding.btnTileChangePassword.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToOtpFragment())
-        }
         binding.btnTileLogout.setOnClickListener {
             logout()
+        }
+        binding.btnTileChangePassword.setOnClickListener {
+            navigateToChangePassword()
         }
         binding.btnTileGroupInfo.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToGroupInfoFragment())
@@ -144,9 +148,44 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             .into(binding.civPersonAvatar)
     }
 
+    private fun navigateToChangePassword() {
+        if (args.userProfileArgs != null) {
+            findNavController().navigate(
+                ProfileFragmentDirections.actionProfileFragmentToOtpFragment(
+                    args.userProfileArgs
+                )
+            )
+        }
+    }
+
     private fun logout() {
-        viewModel.setAuthToken("")
-        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSignInFragment())
+        viewModel.run {
+            logout()
+            logoutData.observe(viewLifecycleOwner) { response ->
+
+                when (response) {
+                    is ApiResponse.Loading -> {
+                        Timber.tag("LOGOUT").d("logout: Loading")
+                    }
+
+                    is ApiResponse.Success -> {
+                        viewModel.setAuthToken("")
+                        findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSignInFragment())
+                    }
+
+                    is ApiResponse.Error -> {
+                        Timber.tag("LOGOUT").d("logout: Error")
+                        showHttpErrorDialog(response.errorMessage)
+                    }
+
+                    else -> {
+                        Timber.tag("LOGOUT").d("logout: Else")
+                    }
+                }
+
+
+            }
+        }
     }
 
 

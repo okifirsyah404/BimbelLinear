@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.AnimationSet
-import android.view.animation.DecelerateInterpolator
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.okifirsyah.bimbellinear.BuildConfig
+import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.data.model.ScheduleModel
-import com.okifirsyah.bimbellinear.data.model.UserModel
 import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.databinding.FragmentHomeBinding
 import com.okifirsyah.bimbellinear.presentation.adapter.ScheduleAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
+import com.okifirsyah.bimbellinear.utils.constant.errorMessageConstant.NO_CONNECTION
 import com.okifirsyah.bimbellinear.utils.constant.stateKeyConstant.KEY_PASSWORD_NOTIFICATION_CLOSED
 import com.okifirsyah.bimbellinear.utils.extensions.getGreetings
 import com.okifirsyah.bimbellinear.utils.extensions.showHttpErrorDialog
@@ -71,7 +68,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initOnRefresh() {
         binding.llRefreshHome.setOnRefreshListener {
+            initIntent()
+            initUI()
+            initAppBar()
+            initProcess()
             initObservers()
+            initOnRefresh()
             binding.llRefreshHome.isRefreshing = false
         }
     }
@@ -117,50 +119,63 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                     binding.homeToolbar.tvPersonName.text = userResponse?.name
 
-                    if (!isPasswordNotificationClosed) initNotify(userResponse)
-
                     Glide.with(this)
                         .load("${BuildConfig.BASE_IMAGE_URL}${userResponse?.id}.jpg")
+                        .error(R.drawable.default_avatar)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
                         .circleCrop()
                         .into(binding.homeToolbar.civPersonAvatar)
 
-                    binding.homeToolbar.btnProfile.setOnClickListener {
-                        val navDirections =
-                            HomeFragmentDirections.actionHomeFragmentToProfileFragment(userResponse)
-                        findNavController().navigate(navDirections)
+                    when (response.data.status) {
+                        200 -> {
+                            binding.apply {
+                                homeToolbar.btnProfile.setOnClickListener {
+                                    val navDirections =
+                                        HomeFragmentDirections.actionHomeFragmentToProfileFragment(
+                                            userResponse
+                                        )
+                                    findNavController().navigate(navDirections)
+                                }
+                                lNotifyOffline.visibility = View.GONE
+                            }
+                        }
+
+                        503 -> {
+                            binding.apply {
+                                homeToolbar.btnProfile.setOnClickListener(null)
+                                lNotifyOffline.visibility = View.VISIBLE
+                            }
+                        }
+
+                        else -> {
+                            binding.homeToolbar.btnProfile.setOnClickListener(null)
+                        }
                     }
                 }
 
                 is ApiResponse.Error -> {
-                    Timber.e(response.errorMessage)
-                    showHttpErrorDialog(
-                        response.errorMessage,
-                        submitText = "Login Kembali",
-                        onSubmit = {
-                            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
-                        })
+                    Timber.tag("Error HOME").d(response.errorMessage)
+                    viewModel.getLocalProfile()
 
+                    if (NO_CONNECTION in response.errorMessage) {
+                        showHttpErrorDialog(
+                            response.errorMessage,
+                            submitText = "Masuk Ke Offline Mode",
+                        )
+                    } else {
+                        showHttpErrorDialog(
+                            response.errorMessage,
+                            submitText = "Login Kembali",
+                            onSubmit = {
+                                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
+                            })
+                    }
                 }
 
                 else -> {
                     Timber.d("Loading")
                 }
-            }
-
-        }
-    }
-
-    private fun initNotify(user: UserModel?) {
-        if (savedInstanceState == null) {
-            initNotifyChangePassword(user)
-        } else {
-            isPasswordNotificationClosed =
-                savedInstanceState.getBoolean(KEY_PASSWORD_NOTIFICATION_CLOSED, false)
-
-            if (!isPasswordNotificationClosed) {
-                binding.lNotifyPassword.llNotifyPassword.visibility = View.VISIBLE
             }
         }
     }
@@ -186,10 +201,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     } else {
 
                         binding.apply {
-                            Timber.tag("SCHEDULE_LENGTH_3").d(responseData.size.toString())
-                            tvScheduleEmpty.visibility = View.VISIBLE
+                            layoutEmptyItem.emptyView.visibility = View.VISIBLE
+                            layoutEmptyItem.tvEmptyMessage.text =
+                                "Tidak ada jadwal yang tersedia"
                             rvSchedules.visibility = View.GONE
-                            Timber.tag("SCHEDULE_LENGTH_3").d(tvScheduleEmpty.visibility.toString())
                         }
                     }
 
@@ -198,7 +213,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                 is ApiResponse.Error -> {
                     Timber.e(response.errorMessage)
-                    showHttpErrorDialog(response.errorMessage)
+                    viewModel.fetchLocalSchedules()
                 }
 
                 else -> {
@@ -206,54 +221,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
             }
 
-        }
-    }
-
-
-    private fun initNotifyChangePassword(user: UserModel?) {
-        viewModel.changePasswordNotification.observe(viewLifecycleOwner) { isChangePassword ->
-            if (!isChangePassword) {
-                binding.lNotifyPassword.tvNotifyPasswordDesc.text =
-                    "Hi ${user?.name}, untuk keamanan akun kamu, harap ubah password kamu sekarang."
-
-                binding.lNotifyPassword.ivCloseNotifyPassword.setOnClickListener {
-                    binding.lNotifyPassword.llNotifyPassword.apply {
-                        animation =
-                            AnimationSet(false).apply {
-                                addAnimation(
-                                    AlphaAnimation(
-                                        1.0f,
-                                        0.0f
-                                    ).apply {
-                                        duration = 400
-                                        interpolator = AccelerateInterpolator()
-                                    }
-                                )
-                            }
-
-                        visibility = View.GONE
-                    }
-                    isPasswordNotificationClosed = true
-                }
-
-                binding.lNotifyPassword.llNotifyPassword.apply {
-                    animation = AnimationSet(false).apply {
-                        addAnimation(
-                            AlphaAnimation(
-                                0.0f,
-                                1.0f
-                            ).apply {
-                                duration = 400
-                                interpolator = DecelerateInterpolator()
-                            }
-                        )
-                    }
-                    visibility = View.VISIBLE
-
-                }
-
-                isPasswordNotificationClosed = true
-            }
         }
     }
 

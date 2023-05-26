@@ -63,11 +63,20 @@ class BillListFragment : BaseFragment<FragmentBillListBinding>() {
                     initLoading(false)
 
                     val responseData = response.data.data
-                    binding.rvBill.adapter = billAdapter
 
-                    billAdapter.setData(
-                        responseData as ArrayList<BillModel>
-                    )
+                    if (responseData?.size!! > 0) {
+                        binding.rvBill.adapter = billAdapter
+
+                        billAdapter.setData(
+                            responseData as ArrayList<BillModel>
+                        )
+                    } else {
+                        binding.layoutEmptyItem.apply {
+                            emptyView.visibility = View.VISIBLE
+                            tvEmptyMessage.text = "Belum ada tagihan"
+                        }
+
+                    }
 
                 }
 
@@ -94,10 +103,10 @@ class BillListFragment : BaseFragment<FragmentBillListBinding>() {
     private fun initLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
             rvBill.visibility = View.GONE
-            homeLoading.layoutLoading.visibility = View.VISIBLE
+            billLoading.layoutLoading.visibility = View.VISIBLE
         } else binding.apply {
             rvBill.visibility = View.VISIBLE
-            homeLoading.layoutLoading.visibility = View.GONE
+            billLoading.layoutLoading.visibility = View.GONE
         }
     }
 

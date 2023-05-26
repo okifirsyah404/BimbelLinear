@@ -16,4 +16,13 @@
     <string name="join_group">Gabung Grup Whatsapp</string>
     <string name="schedule_subtitle">Jadwal Bimbel</string>
     <string name="empty_schedule">Tidak ada jadwal</string>
+    <string name="save">Simpan</string>
+    <string name="e_mail">E mail</string>
+    <string name="password">Kata Sandi</string>
+    <string name="sign_in">Masuk</string>
+    <string name="logo">logo</string>
+    <string name="forget_password">Lupa Password?</string>
+    <string name="email_verify">Verifikasi Email</string>
+    <string name="verify">Verifikasi</string>
+    <string name="resend_otp">Kirim ulang kode dalam</string>
 </resources>

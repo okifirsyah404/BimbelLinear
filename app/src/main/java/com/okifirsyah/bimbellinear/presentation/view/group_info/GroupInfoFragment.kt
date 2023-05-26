@@ -12,7 +12,6 @@ import com.okifirsyah.bimbellinear.databinding.FragmentGroupInfoBinding
 import com.okifirsyah.bimbellinear.presentation.adapter.PersonAdapter
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import com.okifirsyah.bimbellinear.presentation.dialog.SingleButtonDialog
-import com.okifirsyah.bimbellinear.presentation.view.home.HomeFragmentDirections
 import com.okifirsyah.bimbellinear.utils.constant.dialogConstant
 import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
 import com.okifirsyah.bimbellinear.utils.extensions.showCustomDialog
@@ -98,7 +97,7 @@ class GroupInfoFragment : BaseFragment<FragmentGroupInfoBinding>() {
                         dialogType = SingleButtonDialog.FAILED_DIALOG,
                         submitText = "Login",
                         onSubmit = {
-                            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
+//                            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
                         }
                     )
                 }

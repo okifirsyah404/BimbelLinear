@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ll_main_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +30,8 @@
                     layout="@layout/toolbar_home"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp" />
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_schedule_subtitle"
@@ -40,38 +41,32 @@
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/schedule_subtitle" />
+                    android:text="@string/schedule_subtitle"
+                    app:layout_constraintTop_toBottomOf="@id/home_toolbar" />
 
-                <TextView
-                    android:id="@+id/tv_schedule_empty"
-                    style="@style/BodySmall"
+                <include
+                    android:id="@+id/layout_empty_item"
+                    layout="@layout/layout_empty_item"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="72dp"
-                    android:gravity="center"
-                    android:text="@string/empty_schedule"
-                    android:visibility="gone" />
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_subtitle" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_schedules"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:isScrollContainer="false"
                     android:nestedScrollingEnabled="false"
                     android:orientation="horizontal"
+                    android:overScrollMode="never"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_schedule_subtitle"
                     tools:listitem="@layout/item_attendance" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <include
-        android:id="@+id/home_loading"
-        layout="@layout/layout_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         android:id="@+id/l_notify_password"
@@ -80,6 +75,34 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/l_notify_offline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondary_60"
+        android:elevation="12dp"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            style="@style/BodySmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anda sekarang berada di mode offline. Beberapa fitur mungkin tidak dapat diakses"
+            android:textColor="@color/neutral_10" />
+
+    </FrameLayout>
+
+    <include
+        android:id="@+id/home_loading"
+        layout="@layout/layout_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

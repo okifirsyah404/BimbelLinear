@@ -50,9 +50,25 @@ class HomeViewModel(
         }
     }
 
+    fun getLocalProfile() {
+        viewModelScope.launch {
+            userRepository.fetchLocalProfile().collect {
+                _userProfileResult.postValue(it)
+            }
+        }
+    }
+
     fun fetchSchedules() {
         viewModelScope.launch {
             scheduleRepository.fetchSchedules().collect {
+                _scheduleResult.postValue(it)
+            }
+        }
+    }
+
+    fun fetchLocalSchedules() {
+        viewModelScope.launch {
+            scheduleRepository.fetchLocalSchedules().collect {
                 _scheduleResult.postValue(it)
             }
         }

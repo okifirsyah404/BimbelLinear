@@ -9,6 +9,8 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.data.local.preferences.AppPreferences
+import com.okifirsyah.bimbellinear.data.network.ApiResponse
+import com.okifirsyah.bimbellinear.data.network.base.BaseResponse
 import com.okifirsyah.bimbellinear.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import net.gotev.uploadservice.data.UploadInfo
@@ -25,6 +27,9 @@ class ProfileViewModel(
 
     val userToken: MutableLiveData<String> by lazy { _userToken }
     private val _userToken = MutableLiveData<String>()
+
+    val logoutData: MutableLiveData<ApiResponse<BaseResponse<Nothing>>> by lazy { _logoutData }
+    private val _logoutData = MutableLiveData<ApiResponse<BaseResponse<Nothing>>>()
 
     fun setAuthToken(token: String) {
         viewModelScope.launch {
@@ -92,6 +97,14 @@ class ProfileViewModel(
                         }
 
                     })
+        }
+    }
+
+    fun logout() {
+        viewModelScope.launch {
+            userRepository.logout().collect {
+                _logoutData.postValue(it)
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ android {
         versionName "1.0.0"
 
         buildConfigField("String", "BASE_URL", '"https://linear.yoganova.my.id/api/siswa/"')
-        buildConfigField("String", "BASE_IMAGE_URL", '"https://linear.yoganova.my.id/img/siswa/"')
+        buildConfigField("String", "BASE_IMAGE_URL", '"https://linear.yoganova.my.id/api/siswa/img?img="')
         buildConfigField("String", "DB_NAME", '"bimbel-linear-db"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -99,6 +99,7 @@ dependencies {
     //  Glide
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     kapt 'com.github.bumptech.glide:compiler:4.15.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
 
     //  Lottie
     implementation "com.airbnb.android:lottie:3.5.0"

@@ -27,6 +27,8 @@
         <item name="drawableContainerColor">@color/primary_90</item>
         <item name="disableFilledButtonColor">@color/neutral_90</item>
         <item name="disableFilledButtonTextColor">@color/neutral_60</item>
+        <item name="mainSecondaryColor">@color/neutral_70</item>
+        <item name="buttonContainerColor">@color/neutral_100</item>
 
     </style>
 

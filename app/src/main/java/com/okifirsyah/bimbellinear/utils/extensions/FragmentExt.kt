@@ -10,6 +10,7 @@ import com.okifirsyah.bimbellinear.presentation.dialog.CameraOrGalleryDialog
 import com.okifirsyah.bimbellinear.presentation.dialog.ConfirmationDialog
 import com.okifirsyah.bimbellinear.presentation.dialog.SingleButtonDialog
 import com.okifirsyah.bimbellinear.utils.constant.dialogConstant.ERROR_TITLE
+import com.okifirsyah.bimbellinear.utils.constant.errorMessageConstant
 
 fun Fragment.showCustomDialog(
     title: String,
@@ -60,22 +61,26 @@ fun Fragment.showHttpErrorDialog(
     submitText: String = "OK",
     onSubmit: (() -> Unit?)? = null
 ) {
-    if ("Unable to resolve host" in errorMessage) {
-        SingleButtonDialog(
-            ERROR_TITLE,
-            dialogMessage = "Harap periksa koneksi internet anda",
-            onSubmit = onSubmit,
-            buttonText = submitText,
-            dialogType = SingleButtonDialog.FAILED_DIALOG
-        ).show(childFragmentManager, SingleButtonDialog.TAG)
-    } else {
-        SingleButtonDialog(
-            ERROR_TITLE,
-            dialogMessage = errorMessage,
-            onSubmit = onSubmit,
-            buttonText = submitText,
-            dialogType = SingleButtonDialog.FAILED_DIALOG
-        ).show(childFragmentManager, SingleButtonDialog.TAG)
+    when (errorMessageConstant.NO_CONNECTION) {
+        in errorMessage -> {
+            SingleButtonDialog(
+                ERROR_TITLE,
+                dialogMessage = "Harap periksa koneksi internet anda",
+                onSubmit = onSubmit,
+                buttonText = submitText,
+                dialogType = SingleButtonDialog.FAILED_DIALOG
+            ).show(childFragmentManager, SingleButtonDialog.TAG)
+        }
+
+        else -> {
+            SingleButtonDialog(
+                ERROR_TITLE,
+                dialogMessage = errorMessage,
+                onSubmit = onSubmit,
+                buttonText = submitText,
+                dialogType = SingleButtonDialog.FAILED_DIALOG
+            ).show(childFragmentManager, SingleButtonDialog.TAG)
+        }
     }
 }
 

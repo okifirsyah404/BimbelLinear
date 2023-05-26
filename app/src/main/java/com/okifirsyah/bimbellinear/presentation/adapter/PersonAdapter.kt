@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.okifirsyah.bimbellinear.BuildConfig
+import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.data.model.MemberGroupModel
 import com.okifirsyah.bimbellinear.databinding.ItemGroupInfoBinding
 import com.okifirsyah.bimbellinear.utils.extensions.toTitleCase
@@ -31,6 +32,7 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
         Glide.with(holder.itemView)
             .load("${BuildConfig.BASE_IMAGE_URL}${person.id}.jpg")
+            .error(R.drawable.splash_1)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .circleCrop()
             .into(binding.civPerson)

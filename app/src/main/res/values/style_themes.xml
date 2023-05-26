@@ -15,6 +15,8 @@
     <attr name="drawableContainerColor" format="reference" />
     <attr name="disableFilledButtonColor" format="reference" />
     <attr name="disableFilledButtonTextColor" format="reference" />
+    <attr name="mainSecondaryColor" format="reference" />
+    <attr name="buttonContainerColor" format="reference" />
 
     <!--    Typography Theme-->
 

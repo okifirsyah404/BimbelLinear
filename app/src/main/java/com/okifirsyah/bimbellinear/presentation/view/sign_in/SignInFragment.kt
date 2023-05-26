@@ -39,42 +39,49 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>() {
     }
 
     override fun initIntent() {
-        binding.btnlogin.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+        binding.apply {
+            btnLogin.setOnClickListener {
+                val email = binding.etEmail.text.toString()
+                val password = binding.etPassword.text.toString()
 
-            Handler(Looper.getMainLooper()).postDelayed(
-                {
-                    when {
-                        email.isBlank() -> {
-                            showCustomDialog(
-                                dialogConstant.ERROR_EMAIL_SIGN_IN_TITLE,
-                                "Silahkan masukkan email dengan benar",
-                                dialogType = SingleButtonDialog.FAILED_DIALOG
-                            )
+                Handler(Looper.getMainLooper()).postDelayed(
+                    {
+                        when {
+                            email.isBlank() -> {
+                                showCustomDialog(
+                                    dialogConstant.ERROR_EMAIL_SIGN_IN_TITLE,
+                                    "Silahkan masukkan email dengan benar",
+                                    dialogType = SingleButtonDialog.FAILED_DIALOG
+                                )
+                            }
+
+                            email.isEmail() -> {
+                                showCustomDialog(
+                                    dialogConstant.ERROR_EMAIL_SIGN_IN_TITLE,
+                                    "Silahkan masukkan email dengan benar",
+                                    dialogType = SingleButtonDialog.FAILED_DIALOG
+                                )
+                            }
+
+                            password.isBlank() -> {
+                                showCustomDialog(
+                                    dialogConstant.ERROR_PASSWORD_SIGN_IN_TITLE,
+                                    "Silahkan masukkan password dengan benar",
+                                    dialogType = SingleButtonDialog.FAILED_DIALOG
+                                )
+                            }
+
+                            else -> loginUser(email, password)
                         }
+                    }, 200L
+                )
+            }
 
-                        email.isEmail() -> {
-                            showCustomDialog(
-                                dialogConstant.ERROR_EMAIL_SIGN_IN_TITLE,
-                                "Silahkan masukkan email dengan benar",
-                                dialogType = SingleButtonDialog.FAILED_DIALOG
-                            )
-                        }
-
-                        password.isBlank() -> {
-                            showCustomDialog(
-                                dialogConstant.ERROR_PASSWORD_SIGN_IN_TITLE,
-                                "Silahkan masukkan password dengan benar",
-                                dialogType = SingleButtonDialog.FAILED_DIALOG
-                            )
-                        }
-
-                        else -> loginUser(email, password)
-                    }
-                }, 200L
-            )
+            btnForgetPassword.setOnClickListener {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToResetPasswordFragment())
+            }
         }
+
     }
 
 

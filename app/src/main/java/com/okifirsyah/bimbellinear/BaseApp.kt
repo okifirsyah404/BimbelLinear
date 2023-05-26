@@ -10,6 +10,7 @@ import com.okifirsyah.bimbellinear.di.features.billModule
 import com.okifirsyah.bimbellinear.di.features.groupModule
 import com.okifirsyah.bimbellinear.di.features.scheduleModule
 import com.okifirsyah.bimbellinear.di.features.userModule
+import com.okifirsyah.bimbellinear.di.localModule
 import com.okifirsyah.bimbellinear.di.networkModule
 import com.okifirsyah.bimbellinear.di.preferenceModule
 import com.okifirsyah.bimbellinear.di.viewModelModule
@@ -34,16 +35,9 @@ class BaseApp : Application() {
             val channelName = "Bimbel Linear Channel"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(channelId, channelName, importance)
-
-            // Customize the channel properties if needed
-            // channel.description = "Bimbel Linear Channel Description"
-            // channel.enableVibration(true)
-
-            // Get the system notification manager
             val notificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-            // Create the notification channel
             notificationManager.createNotificationChannel(channel)
         }
     }
@@ -67,6 +61,7 @@ class BaseApp : Application() {
             modules(
                 listOf(
                     networkModule,
+                    localModule,
                     userModule,
                     scheduleModule,
                     groupModule,

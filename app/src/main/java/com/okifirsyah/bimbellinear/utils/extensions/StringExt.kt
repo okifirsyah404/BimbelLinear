@@ -36,3 +36,10 @@ fun String.toDate(): Date {
     dateFormat.timeZone = TimeZone.getTimeZone("UTC")
     return dateFormat.parse(this)!!
 }
+
+fun String.isStrongPassword(): Boolean {
+    if (all { it.isDigit() }) return false
+    if (all { it.isLetter() }) return false
+    if (all { !it.isLetterOrDigit() }) return false
+    return true
+}
