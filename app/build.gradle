@@ -15,7 +15,7 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.0-alpha"
 
         buildConfigField("String", "BASE_URL", '"https://linear.yoganova.my.id/api/siswa/"')
         buildConfigField("String", "BASE_IMAGE_URL", '"https://linear.yoganova.my.id/api/siswa/img?img="')

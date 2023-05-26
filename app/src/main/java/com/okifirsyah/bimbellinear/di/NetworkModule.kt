@@ -3,6 +3,7 @@ package com.okifirsyah.bimbellinear.di
 import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.data.network.HeaderInterceptor
 import com.okifirsyah.bimbellinear.data.network.services.BillService
+import com.okifirsyah.bimbellinear.data.network.services.BookService
 import com.okifirsyah.bimbellinear.data.network.services.GroupService
 import com.okifirsyah.bimbellinear.data.network.services.ScheduleService
 import com.okifirsyah.bimbellinear.data.network.services.UserService
@@ -41,6 +42,7 @@ val networkModule = module {
     single { provideScheduleService(get()) }
     single { provideGroupService(get()) }
     single { provideBillService(get()) }
+    single { provideBookService(get()) }
 }
 
 private fun getHeaderAppJsonInterceptor(): Interceptor {
@@ -51,7 +53,9 @@ private fun getHeaderAppJsonInterceptor(): Interceptor {
 }
 
 
-fun provideAuthService(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
+fun provideAuthService(retrofit: Retrofit): UserService =
+    retrofit.create(UserService::class.java)
+
 fun provideScheduleService(retrofit: Retrofit): ScheduleService =
     retrofit.create(ScheduleService::class.java)
 
@@ -60,3 +64,6 @@ fun provideGroupService(retrofit: Retrofit): GroupService =
 
 fun provideBillService(retrofit: Retrofit): BillService =
     retrofit.create(BillService::class.java)
+
+fun provideBookService(retrofit: Retrofit): BookService =
+    retrofit.create(BookService::class.java)

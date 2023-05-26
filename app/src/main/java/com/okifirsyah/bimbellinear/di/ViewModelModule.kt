@@ -6,6 +6,7 @@ import com.okifirsyah.bimbellinear.presentation.view.bill_detail.BillDetailViewM
 import com.okifirsyah.bimbellinear.presentation.view.change_password.ChangePasswordViewModel
 import com.okifirsyah.bimbellinear.presentation.view.group_info.GroupInfoViewModel
 import com.okifirsyah.bimbellinear.presentation.view.home.HomeViewModel
+import com.okifirsyah.bimbellinear.presentation.view.module_book.ModuleBookViewModel
 import com.okifirsyah.bimbellinear.presentation.view.on_boarding.OnBoardingViewModel
 import com.okifirsyah.bimbellinear.presentation.view.otp.OtpViewModel
 import com.okifirsyah.bimbellinear.presentation.view.profile.ProfileViewModel
@@ -28,4 +29,5 @@ val viewModelModule = module {
     viewModel { OtpViewModel(get()) }
     viewModel { ChangePasswordViewModel(get()) }
     viewModel { ResetPasswordViewModel(get()) }
+    viewModel { ModuleBookViewModel(get()) }
 }

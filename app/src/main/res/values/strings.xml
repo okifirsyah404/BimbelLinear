@@ -25,4 +25,8 @@
     <string name="email_verify">Verifikasi Email</string>
     <string name="verify">Verifikasi</string>
     <string name="resend_otp">Kirim ulang kode dalam</string>
+    <string name="on_boarding_1_desc">Kami menyediakan program pembelajaran yang komprehensif untuk meningkatkan pengetahuan dan keterampilan Anda.</string>
+    <string name="on_boarding_2_desc">Dengan fokus pada persiapan ujian, kami siap membantu Anda meraih hasil terbaik dalam setiap ujian yang akan dihadapi.</string>
+    <string name="on_boarding_3_desc">Melalui sesi konsultasi, tim tutor kami siap menjawab pertanyaan Anda dan memberikan bimbingan pribadi untuk mengatasi kesulitan belajar.</string>
+    <string name="app_desc">Aplikasi Bimbel Linear ini akan digunakan sebagai penunjang belajar siswa. Tujuan utama dari aplikasi ini adalah untuk menyediakan solusi yang efisien dalam menyediakan layanan belajar berupa module online dan juga proses upload bukti pembayaran. Aplikasi ini akan memungkinkan siswa bimbel untuk melihat jadwal bimbel, daftar tagihan, informasi kelompok, dan akses module pembelajaran.</string>
 </resources>

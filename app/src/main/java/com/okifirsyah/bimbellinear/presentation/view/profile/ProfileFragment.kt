@@ -55,6 +55,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun initUI() {
         initUserProfile()
+        binding.tvAppVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
     override fun initProcess() {

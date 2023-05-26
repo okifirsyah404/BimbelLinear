@@ -180,7 +180,7 @@ class BillDetailFragment : BaseFragment<FragmentBillDetailBinding>() {
         }
 
         val glideUrl = GlideUrl(
-            "${BuildConfig.BASE_IMAGE_URL}/tagihan/${args.billArgs?.id}.jpg",
+            "${BuildConfig.BASE_URL}/tagihan/nota?nota=${args.billArgs?.id}.jpg",
             LazyHeaders.Builder()
                 .addHeader("Authorization", "")
                 .build()

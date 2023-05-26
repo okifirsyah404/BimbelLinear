@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Build
 import androidx.datastore.preferences.preferencesDataStore
 import com.okifirsyah.bimbellinear.di.features.billModule
+import com.okifirsyah.bimbellinear.di.features.bookModule
 import com.okifirsyah.bimbellinear.di.features.groupModule
 import com.okifirsyah.bimbellinear.di.features.scheduleModule
 import com.okifirsyah.bimbellinear.di.features.userModule
@@ -66,6 +67,7 @@ class BaseApp : Application() {
                     scheduleModule,
                     groupModule,
                     billModule,
+                    bookModule,
                     preferenceModule(dataStore),
                     viewModelModule,
                 ),
