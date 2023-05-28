@@ -1,0 +1,7 @@
+package com.okifirsyah.bimbellinear.utils.constant
+
+object stateKeyConstant {
+    val PROFILE_SCROLL_POSITION = "PROFILE_SCROLL_POSITION"
+    val BILL_SCROLL_POSITION = "BILL_SCROLL_POSITION"
+    val KEY_PASSWORD_NOTIFICATION_CLOSED = "KEY_PASSWORD_NOTIFICATION_CLOSED"
+}
