@@ -15,10 +15,9 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0.0-alpha"
+        versionName "1.0.0-beta"
 
         buildConfigField("String", "BASE_URL", '"https://linear.yoganova.my.id/api/siswa/"')
-        buildConfigField("String", "BASE_IMAGE_URL", '"https://linear.yoganova.my.id/api/siswa/img?img="')
         buildConfigField("String", "DB_NAME", '"bimbel-linear-db"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

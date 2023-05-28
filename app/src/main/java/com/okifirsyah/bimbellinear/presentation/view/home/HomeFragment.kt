@@ -120,7 +120,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     binding.homeToolbar.tvPersonName.text = userResponse?.name
 
                     Glide.with(this)
-                        .load("${BuildConfig.BASE_IMAGE_URL}${userResponse?.id}.jpg")
+                        .load("${BuildConfig.BASE_URL}/img?img=${userResponse?.id}.jpg")
                         .error(R.drawable.default_avatar)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)

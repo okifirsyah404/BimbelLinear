@@ -158,7 +158,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun initUserAvatar() {
         Glide.with(this)
-            .load("${BuildConfig.BASE_IMAGE_URL}${args.userProfileArgs?.id}.jpg")
+            .load("${BuildConfig.BASE_URL}/img?img=${args.userProfileArgs?.id}.jpg")
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .circleCrop()

@@ -31,7 +31,7 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
         val person = personList[position]
 
         Glide.with(holder.itemView)
-            .load("${BuildConfig.BASE_IMAGE_URL}${person.id}.jpg")
+            .load("${BuildConfig.BASE_URL}/img?img=${person.id}.jpg")
             .error(R.drawable.splash_1)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .circleCrop()

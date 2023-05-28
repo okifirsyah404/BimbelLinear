@@ -196,7 +196,8 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                 val sec = millisUntilFinished / 1000 % 60
                 binding.btnResend.apply {
                     val formattedSec = format.format(sec)
-                    if (formattedSec.toInt() >= 10) text = "${format.format(sec)} detik"
+                    text = if (formattedSec.toInt() >= 10) "${format.format(sec)} detik"
+                    else "${formattedSec.substring(1)} detik"
                     setOnClickListener(null)
                 }
             }
@@ -206,7 +207,9 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                     text = "Kirim Ulang"
                     setOnClickListener {
                         initCountDownTimer()
-                        initProcess()
+                        if (args.userArgs != null) getChangePasswordOtp()
+                        else if (args.userEmailArgs != null) viewModel.getOtpResetPassword(args.userEmailArgs!!)
+                        else Timber.tag("OTP").d("initCountDownTimer: Else")
                     }
                 }
             }

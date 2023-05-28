@@ -38,6 +38,18 @@ class OtpViewModel(
         return result
     }
 
+    fun getOtpResetPassword(email: String): MutableLiveData<ApiResponse<BaseResponse<Nothing>>> {
+        val result = MutableLiveData<ApiResponse<BaseResponse<Nothing>>>()
+
+        viewModelScope.launch {
+            repository.getOtpResetPassword(email).collect {
+                result.postValue(it)
+            }
+        }
+
+        return result
+    }
+
     fun sendOtpResetPassword(otp: String): MutableLiveData<ApiResponse<BaseResponse<Nothing>>> {
         val result = MutableLiveData<ApiResponse<BaseResponse<Nothing>>>()
 
