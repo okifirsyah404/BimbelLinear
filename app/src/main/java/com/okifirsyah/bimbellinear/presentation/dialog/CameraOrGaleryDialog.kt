@@ -49,9 +49,10 @@ class CameraOrGalleryDialog(private val launcher: ActivityResultLauncher<Intent>
 
     private fun initCamera() {
         ImagePicker.with(this)
-            .compress(2048)
+            .compress(1000)
             .maxResultSize(1080, 1080)
             .cameraOnly()
+            .cropSquare()
             .createIntent { intent ->
                 launcher.launch(intent)
             }
@@ -59,9 +60,10 @@ class CameraOrGalleryDialog(private val launcher: ActivityResultLauncher<Intent>
 
     private fun initGallery() {
         ImagePicker.with(this)
-            .compress(2048)
+            .compress(1000)
             .maxResultSize(1080, 1080)
             .galleryOnly()
+            .cropSquare()
             .galleryMimeTypes(
                 arrayOf(
                     "image/png",

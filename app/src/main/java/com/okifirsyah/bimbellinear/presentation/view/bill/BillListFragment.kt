@@ -50,6 +50,14 @@ class BillListFragment : BaseFragment<FragmentBillListBinding>() {
         initBillList()
     }
 
+    override fun initOnRefresh() {
+        binding.lRefreshBills.setOnRefreshListener {
+            initProcess()
+            initObservers()
+            binding.lRefreshBills.isRefreshing = false
+        }
+    }
+
     private fun initBillList() {
         viewModel.billResult.observe(viewLifecycleOwner) { response ->
             when (response) {

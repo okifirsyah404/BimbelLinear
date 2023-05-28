@@ -47,6 +47,14 @@ class ModuleBookFragment : BaseFragment<FragmentModuleBookBinding>() {
         initBooks()
     }
 
+    override fun initOnRefresh() {
+        binding.lRefreshBook.setOnRefreshListener {
+            initProcess()
+            initObservers()
+            binding.lRefreshBook.isRefreshing = false
+        }
+    }
+
     private fun initLoading(isLoading: Boolean) {
         if (isLoading) binding.apply {
             rvModule.visibility = View.GONE

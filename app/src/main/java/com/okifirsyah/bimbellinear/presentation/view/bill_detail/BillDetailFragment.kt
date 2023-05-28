@@ -73,6 +73,7 @@ class BillDetailFragment : BaseFragment<FragmentBillDetailBinding>() {
     override fun initObservers() {
     }
 
+
     override fun initIntent() {
         binding.btnDropZone.setOnClickListener {
             showCameraOrGalleryDialog(launcher)
