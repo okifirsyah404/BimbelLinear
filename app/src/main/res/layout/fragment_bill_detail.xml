@@ -37,6 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/placeholder"
                     android:src="@drawable/img_upload_camera"
                     app:tint="@color/primary_50" />
 
@@ -46,6 +47,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:alpha="0.2"
+                    android:contentDescription="@string/bill_preview"
                     android:scaleType="centerCrop"
                     android:visibility="gone" />
 
@@ -54,6 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/bill_preview"
                     android:scaleType="fitCenter"
                     android:visibility="gone" />
 
@@ -84,7 +87,7 @@
                     style="@style/BodyMedium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tanggal Batas Pembayaran" />
+                    android:text="@string/due_date" />
 
                 <TextView
                     android:id="@+id/tv_due_date"
@@ -100,7 +103,7 @@
                     style="@style/BodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tanggal Pembayaran" />
+                    android:text="@string/payment_date" />
 
                 <TextView
                     android:id="@+id/tv_payment_date"
@@ -116,7 +119,7 @@
                     style="@style/BodyMedium"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tanggal Pembayaran Diterima" />
+                    android:text="@string/accept_date" />
 
                 <TextView
                     android:id="@+id/tv_approved_date"
@@ -148,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Bank Tujuan" />
+                    android:text="@string/bank" />
 
                 <TextView
                     android:id="@+id/tv_bank_name"
@@ -166,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:text="Nomor Rekening" />
+                    android:text="@string/account_number" />
 
                 <TextView
                     android:id="@+id/tv_account_number"
@@ -213,7 +216,7 @@
                 tools:text="Pending" />
 
             <View
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
@@ -230,7 +233,7 @@
             style="@style/FilledButtonTheme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Upload Bukti Transfer" />
+            android:text="@string/upload_bills" />
 
     </LinearLayout>
 

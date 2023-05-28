@@ -11,6 +11,7 @@ import com.okifirsyah.bimbellinear.data.network.request.OtpBody
 import com.okifirsyah.bimbellinear.data.network.request.ResetOtpBody
 import com.okifirsyah.bimbellinear.data.network.request.ResetPasswordBody
 import com.okifirsyah.bimbellinear.data.network.response.SignInResponse
+import com.okifirsyah.bimbellinear.data.network.response.SupportContactResponse
 import com.okifirsyah.bimbellinear.data.network.services.UserService
 import com.okifirsyah.bimbellinear.utils.extensions.createResponse
 import kotlinx.coroutines.flow.Flow
@@ -67,6 +68,7 @@ class UserDataSource(
                         response.data.id,
                     )
                 } else {
+                    userDao.deleteUser()
                     userDao.insertUser(response.data)
                 }
 
@@ -144,6 +146,29 @@ class UserDataSource(
                 if (e is HttpException) {
                     val response = e.createResponse()
                     Timber.tag("ChangePasswordErrorException").d(response.toString())
+                    emit(ApiResponse.Error(response?.message ?: ""))
+                } else {
+                    emit(ApiResponse.Error(e.message ?: ""))
+                }
+            }
+        }
+    }
+
+    suspend fun getSupportContact(): Flow<ApiResponse<BaseResponse<SupportContactResponse>>> {
+        return flow {
+            try {
+                emit(ApiResponse.Loading)
+                val response = userService.getSupportContact()
+                Timber.tag("SupportContact").d(response.toString())
+                if (response.status == HttpURLConnection.HTTP_OK) {
+                    Timber.tag("SupportContact").d(response.toString())
+                    emit(ApiResponse.Success(response))
+                }
+            } catch (e: Exception) {
+                Timber.tag("SupportContactErrorException").d(e.toString())
+                if (e is HttpException) {
+                    val response = e.createResponse()
+                    Timber.tag("SupportContactErrorException").d(response.toString())
                     emit(ApiResponse.Error(response?.message ?: ""))
                 } else {
                     emit(ApiResponse.Error(e.message ?: ""))

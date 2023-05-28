@@ -4,6 +4,7 @@ import com.okifirsyah.bimbellinear.data.model.UserModel
 import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.data.network.base.BaseResponse
 import com.okifirsyah.bimbellinear.data.network.response.SignInResponse
+import com.okifirsyah.bimbellinear.data.network.response.SupportContactResponse
 import com.okifirsyah.bimbellinear.data.source.UserDataSource
 import com.okifirsyah.bimbellinear.data.source.UserLocalDataSource
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +40,10 @@ class UserRepository(
 
     suspend fun changePassword(password: String): Flow<ApiResponse<BaseResponse<Nothing>>> {
         return remoteDataSource.sendChangePassword(password).flowOn(Dispatchers.IO)
+    }
+
+    suspend fun getSupportContact(): Flow<ApiResponse<BaseResponse<SupportContactResponse>>> {
+        return remoteDataSource.getSupportContact().flowOn(Dispatchers.IO)
     }
 
     suspend fun logout(): Flow<ApiResponse<BaseResponse<Nothing>>> {

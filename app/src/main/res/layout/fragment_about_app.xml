@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/viewBackgroundColor"
     android:orientation="vertical"
     tools:context=".presentation.view.about_app.AboutAppFragment">
 
@@ -18,28 +19,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingVertical="16dp">
 
             <TextView
                 style="@style/LabelSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:text="Tentang Aplikasi" />
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/about_app" />
 
             <TextView
                 style="@style/BodySmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginBottom="16dp"
                 android:text="@string/app_desc" />
 
-            <!--            <TextView-->
-            <!--                style="@style/LabelSmall"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginBottom="4dp"-->
-            <!--                android:text="Pengembang Aplikasi" />-->
+            <TextView
+                style="@style/LabelSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/developers" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_devs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_group_info" />
 
         </LinearLayout>
 

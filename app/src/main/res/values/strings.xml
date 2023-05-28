@@ -29,4 +29,27 @@
     <string name="on_boarding_2_desc">Dengan fokus pada persiapan ujian, kami siap membantu Anda meraih hasil terbaik dalam setiap ujian yang akan dihadapi.</string>
     <string name="on_boarding_3_desc">Melalui sesi konsultasi, tim tutor kami siap menjawab pertanyaan Anda dan memberikan bimbingan pribadi untuk mengatasi kesulitan belajar.</string>
     <string name="app_desc">Aplikasi Bimbel Linear ini akan digunakan sebagai penunjang belajar siswa. Tujuan utama dari aplikasi ini adalah untuk menyediakan solusi yang efisien dalam menyediakan layanan belajar berupa module online dan juga proses upload bukti pembayaran. Aplikasi ini akan memungkinkan siswa bimbel untuk melihat jadwal bimbel, daftar tagihan, informasi kelompok, dan akses module pembelajaran.</string>
+    <string name="take_from_gallery">Ambil Dari Galeri</string>
+    <string name="take_from_camera">Ambil Dari Kamera</string>
+    <string name="about_app">Tentang Aplikasi</string>
+    <string name="group_name">Kelompok Bimbel</string>
+    <string name="room">Ruangan</string>
+    <string name="teacher">Tentor</string>
+    <string name="study_time">Waktu Bimbel</string>
+    <string name="placeholder">Placeholder</string>
+    <string name="bill_preview">bill_preview</string>
+    <string name="due_date">Tanggal Batas Pembayaran</string>
+    <string name="payment_date">Tanggal Pembayaran</string>
+    <string name="accept_date">Tanggal Pembayaran Diterima</string>
+    <string name="bank">Bank Tujuan</string>
+    <string name="account_number">Nomor Rekening</string>
+    <string name="upload_bills">Upload Bukti Transfer</string>
+    <string name="new_password">Kata Sandi Baru</string>
+    <string name="new_repassword">Ulangi Kata Sandi Baru</string>
+    <string name="offline_desc">Anda sekarang berada di mode offline. Beberapa fitur mungkin tidak dapat diakses</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="reminder_change_password_title">Harap Ubah Password Kamu</string>
+    <string name="reminder_change_password_desc">Hi pengguna, untuk keamanan akun kamu, harap ubah password kamu sekarang.</string>
+    <string name="developers">Pengembang Aplikasi</string>
 </resources>

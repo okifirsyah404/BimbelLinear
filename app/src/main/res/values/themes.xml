@@ -29,6 +29,7 @@
         <item name="disableFilledButtonTextColor">@color/neutral_60</item>
         <item name="mainSecondaryColor">@color/neutral_70</item>
         <item name="buttonContainerColor">@color/neutral_100</item>
+        <item name="faqContentContainer">@color/neutral_90</item>
 
     </style>
 

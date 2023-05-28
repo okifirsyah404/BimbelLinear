@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_bill_item_title"
             android:layout_marginBottom="4dp"
-            android:text="Tanggal Batas Pembayaran" />
+            android:text="@string/due_date" />
 
 
         <TextView

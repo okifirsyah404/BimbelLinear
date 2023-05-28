@@ -8,6 +8,7 @@ import com.okifirsyah.bimbellinear.data.network.request.OtpBody
 import com.okifirsyah.bimbellinear.data.network.request.ResetOtpBody
 import com.okifirsyah.bimbellinear.data.network.request.ResetPasswordBody
 import com.okifirsyah.bimbellinear.data.network.response.SignInResponse
+import com.okifirsyah.bimbellinear.data.network.response.SupportContactResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -34,6 +35,9 @@ interface UserService {
     suspend fun changePassword(
         @Body request: ChangePasswordBody
     ): BaseResponse<Nothing>
+
+    @GET("support")
+    suspend fun getSupportContact(): BaseResponse<SupportContactResponse>
 
     @GET("logout")
     suspend fun logout(): BaseResponse<Nothing>

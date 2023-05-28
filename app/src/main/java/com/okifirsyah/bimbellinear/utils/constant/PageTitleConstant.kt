@@ -13,4 +13,5 @@ object pageTitleConstant {
     const val RESET_PASSWORD = "Reset Kata Sandi"
     const val FORGET_PASSWORD = "Lupa Kata Sandi"
     const val ABOUT_APP = "Tentang Aplikasi"
+    const val FAQ = "FAQ"
 }

@@ -43,3 +43,9 @@ fun String.isStrongPassword(): Boolean {
     if (all { !it.isLetterOrDigit() }) return false
     return true
 }
+
+fun String.parsePhoneNumber(): String {
+    val countryCode = "+62"
+    val phoneNumberDigits = this.trimStart('0')
+    return countryCode + phoneNumberDigits
+}

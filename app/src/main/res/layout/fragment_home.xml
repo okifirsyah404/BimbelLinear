@@ -91,7 +91,7 @@
             style="@style/BodySmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anda sekarang berada di mode offline. Beberapa fitur mungkin tidak dapat diakses"
+            android:text="@string/offline_desc"
             android:textColor="@color/neutral_10" />
 
     </FrameLayout>

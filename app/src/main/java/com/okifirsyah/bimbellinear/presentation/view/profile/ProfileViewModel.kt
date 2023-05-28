@@ -11,6 +11,7 @@ import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.data.local.preferences.AppPreferences
 import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.data.network.base.BaseResponse
+import com.okifirsyah.bimbellinear.data.network.response.SupportContactResponse
 import com.okifirsyah.bimbellinear.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import net.gotev.uploadservice.data.UploadInfo
@@ -27,6 +28,10 @@ class ProfileViewModel(
 
     val userToken: MutableLiveData<String> by lazy { _userToken }
     private val _userToken = MutableLiveData<String>()
+
+    val contactSupportData: MutableLiveData<ApiResponse<BaseResponse<SupportContactResponse>>> by lazy { _contactSupportData }
+    private val _contactSupportData =
+        MutableLiveData<ApiResponse<BaseResponse<SupportContactResponse>>>()
 
     val logoutData: MutableLiveData<ApiResponse<BaseResponse<Nothing>>> by lazy { _logoutData }
     private val _logoutData = MutableLiveData<ApiResponse<BaseResponse<Nothing>>>()
@@ -97,6 +102,14 @@ class ProfileViewModel(
                         }
 
                     })
+        }
+    }
+
+    fun contactSupport() {
+        viewModelScope.launch {
+            userRepository.getSupportContact().collect {
+                _contactSupportData.postValue(it)
+            }
         }
     }
 

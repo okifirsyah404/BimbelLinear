@@ -1,6 +1,8 @@
 package com.okifirsyah.bimbellinear.presentation.view.profile
 
 import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,12 +19,14 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.okifirsyah.bimbellinear.BuildConfig
 import com.okifirsyah.bimbellinear.R
+import com.okifirsyah.bimbellinear.data.model.UserModel
 import com.okifirsyah.bimbellinear.data.network.ApiResponse
 import com.okifirsyah.bimbellinear.databinding.FragmentProfileBinding
 import com.okifirsyah.bimbellinear.presentation.base.BaseFragment
 import com.okifirsyah.bimbellinear.utils.constant.pageTitleConstant
 import com.okifirsyah.bimbellinear.utils.constant.stateKeyConstant
 import com.okifirsyah.bimbellinear.utils.extensions.intentToPackageSettings
+import com.okifirsyah.bimbellinear.utils.extensions.parsePhoneNumber
 import com.okifirsyah.bimbellinear.utils.extensions.showCameraOrGalleryDialog
 import com.okifirsyah.bimbellinear.utils.extensions.showCustomDialog
 import com.okifirsyah.bimbellinear.utils.extensions.showHttpErrorDialog
@@ -60,10 +64,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     override fun initProcess() {
         viewModel.getAuthToken()
+        viewModel.contactSupport()
     }
 
     override fun initObservers() {
         initTheme()
+        initContactSupport()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -89,24 +95,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initIntent() {
-        binding.btnTileModule.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToModuleBookFragment())
+        binding.apply {
+            btnTileModule.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToModuleBookFragment())
+            }
+            btnTileLogout.setOnClickListener {
+                logout()
+            }
+            btnTileChangePassword.setOnClickListener {
+                navigateToChangePassword()
+            }
+            btnTileGroupInfo.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToGroupInfoFragment())
+            }
+            btnTileBill.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToBillListFragment())
+            }
+            civPersonAvatar.setOnClickListener {
+                showCameraOrGalleryDialog(launcher)
+            }
+            btnTileFaq.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFaqFragment())
+            }
+            btnTileAboutApp.setOnClickListener {
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToAboutAppFragment())
+            }
         }
-        binding.btnTileLogout.setOnClickListener {
-            logout()
-        }
-        binding.btnTileChangePassword.setOnClickListener {
-            navigateToChangePassword()
-        }
-        binding.btnTileGroupInfo.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToGroupInfoFragment())
-        }
-        binding.btnTileBill.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToBillListFragment())
-        }
-        binding.civPersonAvatar.setOnClickListener {
-            showCameraOrGalleryDialog(launcher)
-        }
+
+
     }
 
     private fun initTheme() {
@@ -238,4 +254,52 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 }
             }
         }
+
+    private fun initContactSupport() {
+        viewModel.contactSupportData.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is ApiResponse.Loading -> {
+                    Timber.tag("CONTACT_SUPPORT").d("initContactSupport: Loading")
+                }
+
+                is ApiResponse.Success -> {
+                    Timber.tag("CONTACT_SUPPORT").d("initContactSupport: Success")
+                    val contactSupport = response.data.data
+
+                    binding.btnTileContactSupport.setOnClickListener {
+                        if (args.userProfileArgs != null && contactSupport != null) intentToWhatsApp(
+                            args.userProfileArgs!!,
+                            contactSupport.name!!,
+                            contactSupport.phoneNumber!!
+                        )
+                    }
+
+                }
+
+                is ApiResponse.Error -> {
+                    Timber.tag("CONTACT_SUPPORT").d("initContactSupport: Error")
+                    showHttpErrorDialog(response.errorMessage)
+                }
+
+                else -> {
+                    Timber.tag("CONTACT_SUPPORT").d("initContactSupport: Else")
+                }
+            }
+        }
+    }
+
+    private fun intentToWhatsApp(senderInfo: UserModel, receiverName: String, localNumber: String) {
+
+        val messageTemplate =
+            """
+                Halo kak $receiverName, saya ${senderInfo.name} dari ${senderInfo.group} ingin bertanya.
+                
+            """.trimIndent()
+        val internationalNumber = localNumber.parsePhoneNumber()
+
+        val url = "whatsapp://send?phone=$internationalNumber&text=$messageTemplate"
+        val i = Intent(Intent.ACTION_VIEW)
+        i.data = Uri.parse(url)
+        startActivity(i)
+    }
 }

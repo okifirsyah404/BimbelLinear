@@ -326,6 +326,34 @@
                     android:layout_below="@+id/btn_tile_module" />
 
                 <LinearLayout
+                    android:id="@+id/btn_tile_contact_support"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="4dp"
+                    android:paddingVertical="16dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_whatsapp" />
+
+                    <TextView
+                        style="@style/BodyMedium"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tanya Admin" />
+
+                </LinearLayout>
+
+                <include
+                    layout="@layout/layout_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/btn_tile_module" />
+
+                <LinearLayout
                     android:id="@+id/btn_tile_faq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

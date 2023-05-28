@@ -31,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_toRightOf="@id/civ_person"
-            android:text="Rani Permata Sari" />
+            android:layout_toEndOf="@id/civ_person"
+            tools:text="Rani Permata Sari" />
 
         <TextView
             android:id="@+id/tv_person_status"
@@ -42,8 +42,8 @@
             android:layout_below="@id/tv_person_name"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/civ_person"
-            android:text="Ketua" />
+            android:layout_toEndOf="@id/civ_person"
+            tools:text="Ketua" />
 
 
     </RelativeLayout>

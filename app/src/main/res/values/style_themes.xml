@@ -17,6 +17,7 @@
     <attr name="disableFilledButtonTextColor" format="reference" />
     <attr name="mainSecondaryColor" format="reference" />
     <attr name="buttonContainerColor" format="reference" />
+    <attr name="faqContentContainer" format="reference" />
 
     <!--    Typography Theme-->
 

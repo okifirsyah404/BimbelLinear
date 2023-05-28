@@ -36,8 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Title"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            tools:text="Title" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_dialog_message"
@@ -45,8 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:text="Message"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            tools:text="Message" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"

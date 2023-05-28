@@ -11,28 +11,17 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
             android:id="@+id/btn_tile_camera"
+            style="@style/BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:drawablePadding="16dp"
             android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_camera_alt_24"
-                app:tint="?attr/mainTextColor" />
-
-            <TextView
-                style="@style/BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ambil Dari Kamera" />
-
-        </LinearLayout>
+            android:paddingVertical="16dp"
+            android:text="@string/take_from_camera"
+            app:drawableStartCompat="@drawable/ic_camera_alt_24"
+            app:drawableTint="?attr/mainTextColor" />
 
         <include
             layout="@layout/layout_divider"
@@ -40,28 +29,17 @@
             android:layout_height="1dp"
             android:layout_below="@+id/btn_tile_module" />
 
-        <LinearLayout
+        <TextView
             android:id="@+id/btn_tile_gallery"
+            style="@style/BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:drawablePadding="16dp"
             android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_image_24"
-                app:tint="?attr/mainTextColor" />
-
-            <TextView
-                style="@style/BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ambil Dari Galeri" />
-
-        </LinearLayout>
+            android:paddingVertical="16dp"
+            android:text="@string/take_from_gallery"
+            app:drawableStartCompat="@drawable/ic_image_24"
+            app:drawableTint="?attr/mainTextColor" />
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
