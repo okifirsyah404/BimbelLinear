@@ -42,6 +42,12 @@ class HomeViewModel(
         }
     }
 
+    fun setUserToken(token: String) {
+        viewModelScope.launch {
+            pref.saveAuthToken(token)
+        }
+    }
+
     fun getUserProfile() {
         viewModelScope.launch {
             userRepository.fetchProfile().collect {

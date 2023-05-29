@@ -45,6 +45,7 @@ class BillDetailViewModel(private val pref: AppPreferences) : ViewModel() {
     ) {
         viewModelScope.launch {
             Timber.tag("URI_LOC_VIEW_MODEL").d("onActivityResult: " + file)
+            Timber.tag("URL").d("${BuildConfig.BASE_URL}tagihan/$billId")
             MultipartUploadRequest(context, "${BuildConfig.BASE_URL}tagihan/$billId")
                 .setMethod("POST")
                 .addHeader("Authorization", token)

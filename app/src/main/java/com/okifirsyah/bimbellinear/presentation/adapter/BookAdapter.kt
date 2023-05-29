@@ -12,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import com.okifirsyah.bimbellinear.BuildConfig
+import com.okifirsyah.bimbellinear.R
 import com.okifirsyah.bimbellinear.data.model.BookModel
 import com.okifirsyah.bimbellinear.databinding.ItemModuleBookBinding
 
@@ -46,6 +47,8 @@ class BookAdapter : RecyclerView.Adapter<BookAdapter.BookViewHolder>() {
 
         Glide.with(holder.itemView.context)
             .load(glideUrl)
+            .placeholder(R.drawable.default_book)
+            .error(R.drawable.default_book)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .into(binding.imgBookItemCover)

@@ -121,6 +121,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
                     Glide.with(this)
                         .load("${BuildConfig.BASE_URL}/img?img=${userResponse?.id}.jpg")
+                        .placeholder(R.drawable.default_avatar)
                         .error(R.drawable.default_avatar)
                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                         .skipMemoryCache(true)
@@ -168,6 +169,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             response.errorMessage,
                             submitText = "Login Kembali",
                             onSubmit = {
+                                viewModel.setUserToken("")
                                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToSignInFragment())
                             })
                     }

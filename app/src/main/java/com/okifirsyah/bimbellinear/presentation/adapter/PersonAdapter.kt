@@ -32,7 +32,7 @@ class PersonAdapter : RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
         Glide.with(holder.itemView)
             .load("${BuildConfig.BASE_URL}/img?img=${person.id}.jpg")
-            .error(R.drawable.splash_1)
+            .error(R.drawable.default_avatar)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .circleCrop()
             .into(binding.civPerson)
